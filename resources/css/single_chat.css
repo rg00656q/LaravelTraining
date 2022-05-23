@@ -1,0 +1,308 @@
+.chat-global {
+    width: 67vw;
+    height: 100vh;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 30px 70px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    position: relative;
+    background: #fff;
+}
+
+/* Header */
+.chat-global .nav-top {
+    position: absolute;
+    background: #fff;
+    top: 0px;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.chat-global .nav-top .group {
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-global .nav-top .group img {
+    width: 50px;
+    margin-left: 10px;
+    border-radius: 6px;
+}
+
+.chat-global .nav-top .group p {
+    font-size: 0.825rem;
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.chat-global .nav-top .group p small {
+    opacity: 0.8;
+}
+
+.chat-global .nav-top .dropdown {
+    width: 300px;
+    display: flex;
+    justify-content: right;
+
+}
+
+.chat-global .nav-top .dropdown a {
+    float: right;
+    width: 50px;
+    margin-top: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.chat-global .nav-top .dropdown a i {
+    position: relative;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.chat-global .nav-top .dropdown a:focus {
+    outline: none;
+    box-shadow: 0 0px 0px rgba(120, 144, 156, 1.0) inset, 0 0 0px rgba(120, 144, 156, 0.8);
+}
+
+.chat-global .nav-top .dropdown a:hover {
+    color: gray;
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu {
+    position: absolute;
+    z-index: 100;
+    display: none;
+    width: 100%;
+    max-width: 150px;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 6px;
+    padding: 0;
+    border: 1px solid #dee2e6;
+    margin-top: 60px;
+    margin-left: 0;
+    height: 160px;
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu.show {
+    display: block;
+
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a {
+    width: 100%;
+    height: 40px;
+    display: flex;
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a:last-child {
+    padding-bottom: 5px;
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a:hover {
+    width: 100%;
+    color: #fff;
+    background-color: rgb(127, 127, 127);
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #0d6efd
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a:last-child:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #ff0000;
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a i {
+    margin: auto .5rem;
+    font-size: 1.5rem;
+}
+
+.chat-global .nav-top .dropdown .dropdown-menu a p {
+    margin-left: 0;
+    font-size: 1.25rem;
+}
+
+/* Conversation */
+.conversation {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: calc(100vh - 160px);
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    word-wrap: break-word;
+}
+
+.bubble {
+    position: relative;
+    margin: 20px 0;
+    color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    width: 75%;
+}
+
+.bubble img {
+    width: 50px;
+    border-radius: 50%;
+    margin: auto 0 0;
+}
+
+.bubble p {
+    padding: 15px;
+    line-height: 25px;
+}
+
+.user {
+    justify-content: right;
+    margin-left: auto;
+
+}
+
+.user::before {
+    content: attr(data-is);
+    position: absolute;
+    right: 5px;
+    bottom: -1.5em;
+    display: block;
+    font-size: .750rem;
+    color: rgba(84, 110, 122, 1.0);
+}
+
+.user p {
+    margin-right: 10px;
+    border-radius: 20px 20px 3px 20px;
+    background: #42a5f5;
+}
+
+.them::before {
+    content: attr(data-is);
+    position: absolute;
+    left: 5px;
+    bottom: -1.5em;
+    display: block;
+    font-size: .750rem;
+    color: rgba(84, 110, 122, 1.0);
+}
+
+.them p {
+    margin-left: 10px;
+    background: #f1f1f1;
+    color: #000;
+    border-radius: 20px 20px 20px 3px;
+}
+
+/* Formulaire */
+.chat-form {
+    width: 100%;
+    height: 90px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    background: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-form .container-inputs {
+    background: #fff;
+    display: flex;
+    width: 90%;
+    height: 60px;
+    border-radius: 9999px;
+}
+
+.chat-form .container-inputs .files-logo-cont {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-left: 10px;
+    display: block;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.files-logo-cont i {
+    font-size: 30px;
+}
+
+.chat-form .container-inputs .group-inp {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-form .container-inputs .group-inp textarea {
+    resize: none;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    /* il faut redefinir le font dans les textarea */
+    font-family: "Poppins", sans-serif;
+    font-size: 1.25rem;
+    width: 100%;
+    height: 40px;
+    padding-top: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.chat-form .container-inputs .group-inp i {
+    font-size: 35px;
+}
+
+.chat-form .container-inputs .submit-btn {
+    background: #fff;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    width: 70px;
+    border: none;
+    display: flex;
+    padding-right: 5px;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}

@@ -1,0 +1,8 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import 'global.css';
+@import 'navbar.css';
+@import 'discussion.css';
+@import 'single_chat.css';

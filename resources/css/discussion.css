@@ -1,0 +1,113 @@
+.discussion_list{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-shrink: 0;
+    width: 380px;
+    height: 100%;
+    background: #fff;
+    opacity: 1;
+}
+
+.discussion_list .header{
+    display: flex;
+    position: sticky;
+    top: 0;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 1rem;
+    background: #dee2e6;
+    color: #212529;
+    text-decoration: none;
+    border-bottom: 1px solid #dee2e6;
+    height: 70px;
+    z-index: 3;
+}
+
+.discussion_list .header:focus,
+.discussion_list .header:hover{
+    color: #1a1e21;
+}
+
+.discussion_list .header svg{
+    margin-right: .5rem;
+}
+
+.discussion_list .header a{
+    position: relative;
+    margin-left: 10rem;
+    margin-right: .5rem;
+}
+
+.discussion_list .header a svg{
+    margin-left: 1rem;
+}
+
+.discussion {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    border-radius: .25rem;
+    border-radius: 0;
+    border-bottom: 1px solid #dee2e6;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.discussion a{
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    width: 100%;
+    color: #495057;
+    text-align: inherit;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    line-height: 1.25;
+}
+.discussion a:focus,
+.discussion a:hover{
+    z-index: 1;
+    color: #495057;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
+.discussion a:first-child{
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+.discussion a:last-child{
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+
+.discussion a.active{ /* met en avant (avec la couleur) la discussion sur laquelle on est */
+    z-index: 2;
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.discussion a .discussion_header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.discussion a .last_message{
+    flex:0 0 auto;
+    width:83.33333333%;
+    margin-top:.25rem;
+    margin-bottom:.25rem;
+    font-size:.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
