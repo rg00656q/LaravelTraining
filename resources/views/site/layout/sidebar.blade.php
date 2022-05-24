@@ -59,26 +59,38 @@
     </ul>
     <div class="profile_content">
         <div class="profile">
-            <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="user_avatar">
+            <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="user_avatar" id="user_ico">
             <div class="profile_details">
                 <div class="name">Romero Guillaume</div>
                 <div class="job">Web Designer</div>
             </div>
-            <i class='bx bx-log-out' id="log_out"></i>
+            <a href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                <i class='bx bx-log-out' id="log_out"></i>
+            </a>
         </div>
     </div>
 </div>
 
 <script>
     let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector(".sidebar");
     let searchBtn = document.querySelector("#searchBtn");
+    let user_icoBtn = document.querySelector("#user_ico");
+
+    let sidebar = document.querySelector(".sidebar");
 
     btn.onclick = function() {
         sidebar.parentElement.classList.toggle("sb_active");
     }
 
     searchBtn.onclick = function() {
+        sidebar.parentElement.classList.toggle("sb_active");
+    }
+
+    user_icoBtn.onclick = function() {
         sidebar.parentElement.classList.toggle("sb_active");
     }
 </script>

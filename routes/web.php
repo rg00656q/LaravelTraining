@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\DiscussionController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\DiscussionController;
 
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/help', 'App\Http\Controllers\LinksController@help');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
+)->middleware(['auth'])->name('logout');
 
 Route::get('/links', 'App\Http\Controllers\LinksController@index');
 Route::get('/posts', [PostsController::class, 'index'])->name('blog');
