@@ -16,6 +16,7 @@ use App\Http\Controllers\DiscussionController;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index');
+Route::get('/help', 'App\Http\Controllers\LinksController@help');
 
 Route::get('/links', 'App\Http\Controllers\LinksController@index');
 Route::get('/posts', [PostsController::class, 'index'])->name('blog');

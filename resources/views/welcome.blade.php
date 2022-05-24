@@ -14,15 +14,38 @@
 </head>
 
 <body>
-    <div class="content">
-        @include('site.layout.sidebar')
-        <div class="home_content">
-            @yield('content')
+    @auth
+        <div class="content">
+            @include('site.layout.sidebar')
+            <div class="home_content">
+                @yield('content')
+            </div>
+            <div class="precision">
+                @yield('precision')
+            </div>
         </div>
-        <div class="precision">
-            @yield('precision')
+    @endauth
+    @guest
+        <div class="no_content">
+            <div class="home_content">
+                <svg width="50" height="50">
+                    <use xlink:href="#ouch" />
+                </svg>
+                <span>You are not connected</span>
+            </div>
+            <div class="precision">
+                <a href="/login">
+                    <i class='bx bx-log-in'></i>
+                    <span>Log In</span>
+                </a>
+                <hr>
+                <a href="/register">
+                    <span>Sign In</span>
+                    <i class='bx bx-door-open'></i>
+                </a>
+            </div>
         </div>
-    </div>
+    @endguest
 </body>
 
 </html>

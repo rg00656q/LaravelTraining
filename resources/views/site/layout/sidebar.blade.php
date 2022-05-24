@@ -59,12 +59,10 @@
     </ul>
     <div class="profile_content">
         <div class="profile">
+            <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="user_avatar">
             <div class="profile_details">
-                <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="" width="32" height="32">
-                <div class="name_job">
-                    <div class="name">Romero Guillaume</div>
-                    <div class="job">Web Designer</div>
-                </div>
+                <div class="name">Romero Guillaume</div>
+                <div class="job">Web Designer</div>
             </div>
             <i class='bx bx-log-out' id="log_out"></i>
         </div>
