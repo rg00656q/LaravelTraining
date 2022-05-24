@@ -4,13 +4,13 @@
     left: 0;
     height: 100%;
     width: 78px;
-    background: #15101d;
+    background: #0b0062;
     padding: 6px 14px;
     transition: all 0.5s ease;
     z-index: 100;
 }
 
-.sidebar.active {
+.content.sb_active .sidebar {
     width: 240px;
 }
 
@@ -25,7 +25,7 @@
     transition: all 0.5s ease;
 }
 
-.sidebar.active .logo_content .logo {
+.content.sb_active .sidebar .logo_content .logo {
     opacity: 1;
     pointer-events: auto;
 }
@@ -38,6 +38,7 @@
 .logo_content .logo .logo_name {
     font-size: 20px;
     font-weight: 400;
+    margin-left: 5px;
 }
 
 .sidebar #btn {
@@ -53,8 +54,8 @@
     transform: translateX(-50%);
 }
 
-.sidebar.active #btn {
-    left: 90%;
+.content.sb_active .sidebar #btn {
+    left: 85%;
 }
 
 .sidebar ul {
@@ -66,7 +67,7 @@
     position: relative;
     height: 50px;
     width: 100%;
-    margin: 0 5px;
+    margin: 0;
     list-style: none;
     line-height: 50px;
 }
@@ -90,14 +91,14 @@
     z-index: 100;
 }
 
-.sidebar.active ul li .tooltip {
+.content.sb_active .sidebar ul li .tooltip {
     display: none;
 }
 
 .sidebar ul li:hover .tooltip {
-    transition: all 0.5s ease;
     opacity: 1;
     top: 50%;
+    transition: all 0.5s ease;
 }
 
 .sidebar ul li input {
@@ -109,13 +110,13 @@
     border-radius: 12px;
     outline: none;
     border: none;
-    background: #1d1b31;
+    background: #1d1b318d;
     padding-left: 50px;
     font-size: 18px;
     color: #fff;
 }
 
-.sidebar.active ul li input{
+.content.sb_active .sidebar ul li input{
     width: 100%;
     display: grid;
 }
@@ -125,12 +126,13 @@
     z-index: 99;
     color: #fff;
     font-size: 22px;
-    transition: all 0.5s ease;
+    transition: all 150ms ease;
 }
 
 .sidebar ul li .bx-search-alt-2:hover {
     background: #fff;
-    color: #1d1b31
+    color: #1d1b318d;
+    transition: all 150ms ease;
 }
 
 .sidebar ul li a {
@@ -148,6 +150,7 @@
 .sidebar ul li a:hover {
     color: #15101d;
     background: #fff;
+    transition: all 150ms ease;
 }
 
 .sidebar ul li i {
@@ -166,6 +169,7 @@
 .sidebar ul li a:hover i {
     /* c'est moi qui ai compris sa xD */
     color: #15101d;
+    transition: all 150ms ease;
 }
 
 .sidebar .link_name {
@@ -174,7 +178,7 @@
     pointer-events: none;
 }
 
-.sidebar.active .link_name {
+.content.sb_active .sidebar .link_name {
     opacity: 1;
     pointer-events: auto;
 }
@@ -195,8 +199,8 @@
     background: none;
 }
 
-.sidebar.active .profile_content .profile {
-    background: #1d1b31;
+.content.sb_active .sidebar .profile_content .profile {
+    background: #1d1b318d;
 }
 
 .sidebar .profile_content .profile .profile_details {
@@ -207,7 +211,7 @@
     pointer-events: none;
 }
 
-.sidebar.active .profile .profile_details {
+.content.sb_active .sidebar .profile .profile_details {
     opacity: 1;
     pointer-events: auto;
 }
@@ -242,11 +246,11 @@
     border-radius: 12px;
     text-align: center;
     transition: all 0.4s ease;
-    background: #1d1b31;
+    background: #1d1b318d;
     left: 50%;
 }
 
-.sidebar.active .profile #log_out {
+.content.sb_active .sidebar .profile #log_out {
     left: 88%;
     background: none;
 }

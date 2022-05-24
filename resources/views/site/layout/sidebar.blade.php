@@ -77,10 +77,10 @@
     let searchBtn = document.querySelector("#searchBtn");
 
     btn.onclick = function() {
-        sidebar.classList.toggle("active");
+        sidebar.parentElement.classList.toggle("sb_active");
     }
 
     searchBtn.onclick = function() {
-        sidebar.classList.toggle("active");
+        sidebar.parentElement.classList.toggle("sb_active");
     }
 </script>

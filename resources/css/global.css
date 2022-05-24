@@ -1,27 +1,34 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+*::-webkit-scrollbar{
+    display: none;
 }
 
 body{
-    background: rgba(50, 20, 90, 0.8);
+    background: #e4e9f7;
 }
 
-.home_content{
-    position: absolute;
+.content .home_content{
+    position: relative;
     top: 0;
     left: 78px;
     height: 100vh;
-    width: calc(100%-78px);
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
     overflow-x: hidden;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.sidebar.active .home_content{
+.content.sb_active .home_content{
     left: 240px;
-    width: calc(100%-240px);
+    width: calc(100% - 240px);
 }
 
 .precision{
@@ -29,10 +36,13 @@ body{
     top: 0;
     left: 458px;
     height: 100vh;
-    width: calc(100%-458px);
+    width: calc(100% - 458px);
+    min-width: 500px;
+    transition: all 0.5s ease;
 }
 
-.sidebar.active .precision{
+.content.sb_active .precision{
     left: 620px;
-    width: calc(100%-620px);
+    width: 850px;
+    max-width: 850px;
 }

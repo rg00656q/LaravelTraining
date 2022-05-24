@@ -14,12 +14,14 @@
 </head>
 
 <body>
-    @include('site.layout.sidebar')
-    <div class="home_content">
-        @yield('content')
-    </div>
-    <div class="precision">
-        @yield('precision')
+    <div class="content">
+        @include('site.layout.sidebar')
+        <div class="home_content">
+            @yield('content')
+        </div>
+        <div class="precision">
+            @yield('precision')
+        </div>
     </div>
 </body>
 

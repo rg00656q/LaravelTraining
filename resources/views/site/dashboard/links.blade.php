@@ -1,25 +1,12 @@
 @extends('welcome')
 
 @section('content')
-    <style>
-        .links {
-            flex: 0 0 auto;
-            width: 100%;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: #fff;
-            margin-left: 1.5rem;
-        }
-
-    </style>
     <div class="links">
         <div class="work">
-            <button id="wlb" class="btn btn-primary">Work</button>
+            <button id="wlb">Work</button>
             <ul class="mybg">
                 <li>
-                    <a class="nav-link text-black" href="{{ route('blog') }}" target="_blank">
+                    <a href="{{ route('blog') }}" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#blog" />
                         </svg>
@@ -27,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link text-black" href="https://github.com/rg00656q" target="_blank">
+                    <a href="https://github.com/rg00656q" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#git" />
                         </svg>
@@ -35,7 +22,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link text-black" href="#" target="_blank">
+                    <a href="#" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#pole-emploi" />
                         </svg>
@@ -43,7 +30,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link text-black" href="/help" target="_blank">
+                    <a href="/help" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#scorpion" />
                         </svg>
@@ -56,7 +43,7 @@
             <button id="slb">Social</button>
             <ul class="mybg" style="border-radius: 6px; list-style: none;">
                 <li>
-                    <a class="nav-link text-black" href="http://www.youtube.com" target="_blank">
+                    <a href="http://www.youtube.com" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#youtube" />
                         </svg>
@@ -64,7 +51,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link text-black" href="http://www.twitter.com/" target="_blank">
+                    <a href="http://www.twitter.com/" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#twitter" />
                         </svg>
@@ -72,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link text-black" href="http://www.twitch.com/directory/following" target="_blank">
+                    <a href="http://www.twitch.com/directory/following" target="_blank">
                         <svg class="me-2" width="20" height="20">
                             <use xlink:href="#twitch" />
                         </svg>
