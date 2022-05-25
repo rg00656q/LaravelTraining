@@ -5,8 +5,8 @@
             <div class="nav-top">
                 <div class="group">
                     <img src="https://avatars.githubusercontent.com/u/32329634?v=4" />
-                    <p> Friends <br>
-                        <small> Friend group </small>
+                    <p> {{ $discussion->group_name }} <br>
+                        <small> {{ $discussion->description }} </small>
                     </p>
                 </div>
                 <div class="dropdown">

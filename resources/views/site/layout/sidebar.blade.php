@@ -60,11 +60,11 @@
     <div class="profile_content">
         <div class="profile">
             @auth
-                @if ($user->avatar_path == 'none')
+                @if (Auth::user()->avatar_path == 'none')
                     <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png" alt="user_avatar"
                         id="user_ico">
                 @else
-                    <img src="{{ $user->avatar_path }}" alt="user_avatar" id="user_ico">
+                    <img src="{{ Auth::user()->avatar_path }}" alt="user_avatar" id="user_ico">
                 @endif
                 <div class="profile_details">
                     <div class="name">Romero Guillaume</div>

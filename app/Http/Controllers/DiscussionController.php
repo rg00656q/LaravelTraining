@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class DiscussionController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
     public function index(){
-        $user = Auth::user();
-        // $discussions = Discussion::latest()->get();
-        return view('site.discussion.index', compact('user'));
+        $discussions = Discussion::latest()->get();
+        return view('site.discussion.index', compact('discussions'));
     }
 
     public function show($id){
@@ -29,6 +31,7 @@ class DiscussionController extends Controller
             'group_name' => 'required|min:5'
         ]);
         Discussion::create(request(['group_name', 'description']));
+
         return redirect('/discussions');
     }
 }

@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class LinksController extends Controller
 {
     public function index(){
-        $user = Auth::user();
-        return view('site.dashboard.links', compact('user'));
+        return view('site.dashboard.links');
     }
 
     public function help(){
