@@ -24,8 +24,7 @@ class DiscussionController extends Controller
 
     public function store(){
         $this->validate(request(),[
-            'group_name' => 'required|min:5',
-            'description' => 'required|min:1'
+            'group_name' => 'required|min:5'
         ]);
         Discussion::create(request(['group_name', 'description']));
         return redirect('/discussions');

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
             $table->string('group_name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

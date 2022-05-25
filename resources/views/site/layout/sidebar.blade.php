@@ -50,7 +50,7 @@
             <span class="tooltip">Files</span>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('settings') }}">
                 <i class='bx bx-cog'></i>
                 <span class="link_name">Setting</span>
             </a>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="This is my website constructed with Laravel">
     <meta name="author" content="Guillaume Romero, Self taught">
     <title>Ma page d'accueil</title>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,39 +16,9 @@
 <body>
     <div class="content">
         @include('site.layout.sidebar')
-        @auth
-            <div class="home_content">
-                @yield('content')
-            </div>
-            <div class="precision">
-                @yield('precision')
-            </div>
-        @endauth
-        @guest
-            <div class="no_home_content">
-                <svg width="50" height="50">
-                    <use xlink:href="#ouch" />
-                </svg>
-                <span>You are not connected</span>
-            </div>
-            <div class="no_precision">
-                <a href="/login">
-                    <i class='bx bx-log-in'></i>
-                    <span>Log In</span>
-                </a>
-                <hr>
-                <a href="/register">
-                    <span>Sign In</span>
-                    <i class='bx bx-door-open'></i>
-                </a>
-            </div>
-        @endguest
+        @yield('content')
+        @yield('precision')
     </div>
-    @guest
-        <div class="no_content">
-
-        </div>
-    @endguest
 </body>
 
 </html>

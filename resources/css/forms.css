@@ -1,0 +1,101 @@
+.form{
+    display: flex;
+    height: 100vh;
+    justify-content: left;
+}
+
+.formelt{
+    max-width: 700px;
+    width: 100%;
+    padding: 25px 30px;
+    background: #fff;
+    border-radius: 6px;
+}
+
+.formelt .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+.formelt .title::before{
+    content: "";
+    position: absolute;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg, rgb(0, 255, 0), rgb(50, 0, 50));
+    left: 0;
+    bottom: 0;
+}
+
+.formelt form .details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .details .input-box{
+    margin-bottom: 15px;
+    width: calc(100% / 2 - 20px);
+}
+
+.details .input-box label{
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.details .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+    transition: all 200ms ease;
+}
+
+.details .input-box input:focus,
+.details .input-box input:valid{
+    border-color: rgb(0, 255, 0);
+}
+
+.formelt form .button{
+    height: 45px;
+    margin: 45px 0;
+}
+
+.formelt form .button input{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(135deg, rgb(0, 255, 0), rgb(50, 0, 50));
+    color: #fff;
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.formelt form .button input:hover{
+    background: linear-gradient(-135deg, rgb(0, 255, 0), rgb(50, 0, 50));
+}
+
+@media(max-width: 584px){
+    .formelt{
+        max-width: 100%;
+    }
+    .formelt form .details{
+        max-height: 100vh;
+        overflow-y: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .formelt form .details .input-box{
+        margin-bottom: 15px;
+        width: 100%;
+    }
+}

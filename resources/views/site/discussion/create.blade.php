@@ -1,27 +1,32 @@
 @extends('welcome')
 
 @section('content')
-    <div style="flex:0 0 auto;width:100%">
-        <form action="/discussions" method="POST">
-            @csrf
-            <div
-                style="display:block;width:100%;padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;-webkit-appearance:none;-moz-appearance:none;appearance:none;border-radius:.25rem;transition:border-color .15s ease-in-out;box-shadow .15s ease-in-out">
-                <label for="group">Group name :</label>
-                <input type="text" id="group" name="group_name" class="form-control" placeholder="Your group name here"
-                    required>
+    <div class="home_content">
+        <div class="form">
+            <div class="formelt">
+                <div class="title">
+                    Create a group
+                </div>
+                <form action="/discussions" method="POST">
+                    @csrf
+                    <div class="details">
+                        <div class="input-box">
+                            <label for="group">
+                                Group name
+                            </label>
+                            <input type="text" name="group" id="group" placeholder="Enter the group name" required>
+                        </div>
+                        <div class="input-box">
+                            <label for="description">description</label>
+                            <input type="text" name="description" id="description" placeholder="Group description">
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input type="submit" name="submit" value="Create">
+                    </div>
+                </form>
+                @include('layouts.errors')
             </div>
-            <div
-                style="display:block;width:100%;padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;-webkit-appearance:none;-moz-appearance:none;appearance:none;border-radius:.25rem;transition:border-color .15s ease-in-out;box-shadow .15s ease-in-out">
-                <label for="desc">Group description</label>
-                <textarea name="description" placeholder="Descibe your group" style="resize: none" required></textarea>
-            </div>
-            <div
-                style="display:block;width:100%;padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;-webkit-appearance:none;-moz-appearance:none;appearance:none;border-radius:.25rem;transition:border-color .15s ease-in-out;box-shadow .15s ease-in-out">
-                <button type="submit" style="opacity:.65;color:#fff;background-color:#0d6efd;border-color:#0d6efd;">
-                    Create
-                </button>
-            </div>
-        </form>
-        @include('layouts.errors')
+        </div>
     </div>
 @endsection
