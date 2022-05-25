@@ -31,58 +31,24 @@
             </div>
 
             <div class="conversation">
-                <div class="bubble user" data-is="You - 3:30">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                    <img src="{{ asset('pfp/Shiyuu.jpg') }}" alt="Shu">
-                </div>
-                <div class="bubble them" data-is=" - ">
-                    <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                </div>
-                <div class="bubble user" data-is="You - 3:42">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                    <img src="{{ asset('pfp/Shiyuu.jpg') }}" alt="Shu">
-                </div>
-                <div class="bubble them" data-is=" - ">
-                    <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing. </p>
-                </div>
-                <div class="bubble user" data-is="You - 5:01">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo amet odio quibusdam sapiente accusamus
-                        dolorum.
-                    </p>
-                    <img src="{{ asset('pfp/Shiyuu.jpg') }}" alt="Shu">
-                </div>
-                <div class="bubble them" data-is=" - 5:03">
-                    <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                </div>
-                <div class="bubble user" data-is="You - 5:05">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                    <img src="{{ asset('pfp/Shiyuu.jpg') }}" alt="Shu">
-                </div>
-                <div class="bubble them" data-is=" - ">
-                    <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                </div>
-                <div class="bubble user" data-is="You - 5:17">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                    <img src="{{ asset('pfp/Shiyuu.jpg') }}" alt="Shu">
-                </div>
-                <div class="bubble them" data-is=" - ">
-                    <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing. </p>
-                </div>
-                <div class="bubble user" data-is="You - 5:29">
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo amet odio quibusdam sapiente accusamus
-                        dolorum.
-                    </p>
-                    <img src="{{ asset('pfp/Shiyuu.jpg') }}" alt="Shu">
-                </div>
-                <div class="bubble them" data-is="Them - 7:45">
-                    <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                    <p> Lorem ipsum dolor sit amet. </p>
-                </div>
+                @foreach ($discussion->messages as $message)
+                    @if ($message->user == Auth::user()->id)
+                        <div class="bubble user" data-is="You - {{ $message->created_at->toFormattedDateString() }}">
+                            <p> {{ $message->content }} </p>
+                            @if (Auth::user()->avatar_path == 'none')
+                                <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
+                                    alt="user_avatar">
+                            @else
+                                <img src="{{ Auth::user()->avatar_path }}" alt="user_avatar">
+                            @endif
+                        </div>
+                    @else
+                        <div class="bubble them" data-is=" - ">
+                            <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
+                            <p> Lorem ipsum dolor sit amet. </p>
+                        </div>
+                    @endif
+                @endforeach
             </div>
             <form class="chat-form">
                 <div class="container-inputs">
