@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>helping</title>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ url('css/app.css') }}">
     <style>
         .checkbox {
             width: 52px;
@@ -141,6 +140,8 @@
             <span></span>
             <span></span>
         </div>
+    </div>
+    <div class="elt">
     </div>
 
 

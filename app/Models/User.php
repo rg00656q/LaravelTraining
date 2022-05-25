@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
 
     public function discussions(){
-        return $this->belongsToMany(Discussions::class);
+        return $this->belongsToMany(Discussion::class);
     }
 
     public function addMessage(Discussion $discussion, $body){

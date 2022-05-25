@@ -11,17 +11,17 @@
                     @csrf
                     <div class="details">
                         <div class="input-box">
-                            <label for="group">
+                            <span>
                                 Group name
-                            </label>
+                            </span>
                             <input type="text" name="group_name" id="group" placeholder="Enter the group name" required>
                         </div>
                         <div class="input-box">
-                            <label for="description">description</label>
+                            <span>description</span>
                             <input type="text" name="description" id="description" placeholder="Group description">
                         </div>
                     </div>
-                    <div class="button">
+                    <div class="submitbtn">
                         <input type="submit" name="submit" value="Create">
                     </div>
                 </form>

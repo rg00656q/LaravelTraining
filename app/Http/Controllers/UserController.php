@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function show(){
         $user = Auth::user();
-        return view('site.settings.myuser', compact('user'));
+        return view('site.settings.edituser', compact('user'));
     }
 
     public function store(Request $request){

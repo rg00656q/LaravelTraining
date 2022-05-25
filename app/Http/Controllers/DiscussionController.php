@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Discussion;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiscussionController extends Controller
 {
     public function index(){
-        $discussions = Discussion::latest()->get();
-        return view('site.discussion.index', compact('discussions'));
+        $user = Auth::user();
+        // $discussions = Discussion::latest()->get();
+        return view('site.discussion.index', compact('user'));
     }
 
     public function show($id){

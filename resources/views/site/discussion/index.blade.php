@@ -13,9 +13,9 @@
                     </svg>
                 </a>
             </div>
-            @if (count($discussions))
+            @if (count($user->discussions))
                 <div class="discussion">
-                    @foreach ($discussions as $discussion)
+                    @foreach ($user->discussion as $discussion)
                         <a href="/discussions/{{ $discussion->id }}" aria-current="true">
                             <!-- aria current important -->
                             <div class="discussion_header">

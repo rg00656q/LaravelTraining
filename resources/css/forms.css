@@ -12,6 +12,7 @@
     border-radius: 6px;
 }
 
+/* TITLE */
 .formelt .title{
     font-size: 25px;
     font-weight: 500;
@@ -27,6 +28,7 @@
     bottom: 0;
 }
 
+/* Form */
 .formelt form .details{
     display: flex;
     flex-wrap: wrap;
@@ -39,7 +41,8 @@ form .details .input-box{
     width: calc(100% / 2 - 20px);
 }
 
-.details .input-box label{
+/* Form Span + Input */
+.details .input-box span{
     display: block;
     font-weight: 600;
     margin-bottom: 5px;
@@ -62,12 +65,40 @@ form .details .input-box{
     border-color: #42a5f5;
 }
 
-.formelt form .button{
+/* Image upload */
+.formelt .details .input-box .button-wrap{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.formelt .details .input-box input[type="file"]{
+    position: absolute;
+    z-index: -1;
+}
+
+.formelt .details .input-box .avatarbtn{
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    height: 45px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    border-bottom-width: 2px;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+    padding: 8px 0 8px;
+}
+
+/* Submit */
+.formelt form .submitbtn{
     height: 45px;
     margin: 45px 0;
 }
 
-.formelt form .button input{
+.formelt form .submitbtn input{
     height: 100%;
     width: 100%;
     background: linear-gradient(135deg, #42a5f5, #fff);
@@ -81,9 +112,11 @@ form .details .input-box{
     transition: background 1s ease;
 }
 
-.formelt form .button input:hover{
+.formelt form .submitbtn input:hover{
     background: linear-gradient(-135deg, #42a5f5, #fff);
 }
+
+
 
 @media(max-width: 584px){
     .formelt{
