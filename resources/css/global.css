@@ -13,6 +13,12 @@ body{
     background: #e4e9f7;
 }
 
+.content{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
 .content .home_content{
     position: relative;
     top: 0;
@@ -48,13 +54,8 @@ body{
 }
 
 /* Guest view */
-.no_content{
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-}
 
-.no_content .home_content{
+.content .no_home_content{
     position: absolute;
     width: 300px;
     height: 200px;
@@ -64,13 +65,13 @@ body{
     display: flex;
     justify-content: center;
 }
-.no_content .home_content svg{
+.content .no_home_content svg{
     width: 100px;
     height: 100px;
     margin: 1rem auto 0 auto;
 }
 
-.no_content .home_content span{
+.content .no_home_content span{
     position: absolute;
     white-space: nowrap;
     font-size: 28px;
@@ -78,58 +79,59 @@ body{
     bottom: 25px;
 }
 
-.no_content .precision{
+.content .no_precision{
+    position: absolute;
     width: 500px;
     height: 50px;
     display: flex;
     justify-content: space-between;
-    top: 60%;
-    left: 33%;
-    margin: 0 auto;
+    top: 50%;
+    left: 50%;
+    margin: 100px 0 0 -250px;
 }
 
-.no_content .precision a{
+.content .no_precision a{
     position: relative;
     width: 50%;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
 }
-.no_content .precision a:first-child{
+.content .no_precision a:first-child{
     border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
-.no_content .precision a:last-child{
+.content .no_precision a:last-child{
     border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.no_content .precision a:hover,
-.no_content .precision a:focus{
+.content .no_precision a:hover,
+.content .no_precision a:focus{
     background: #d5dae7;
 }
 
-.no_content .precision a i{
+.content .no_precision a i{
     width: 50px;
     height: 50px;
     font-size: 50px;
     color: rgba(0, 0, 0, 0.8);
 }
-.no_content .precision a:hover i,
-.no_content .precision a:focus i{
+.content .no_precision a:hover i,
+.content .no_precision a:focus i{
     color: rgba(255, 0, 0, 0.8);
 }
 
-.no_content .precision a span{
+.content .no_precision a span{
     font-size: 28px;
     margin-bottom: 7px;
     white-space: nowrap;
 }
 
-.no_content .precision a:first-child span{
+.content .no_precision a:first-child span{
     color: #43c862;
     margin-left: 1rem;
 }
 
-.no_content .precision a:last-child span{
+.content .no_precision a:last-child span{
     color: #ffa155;
     margin-right: 1rem;
 }

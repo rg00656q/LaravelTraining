@@ -59,18 +59,33 @@
     </ul>
     <div class="profile_content">
         <div class="profile">
-            <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="user_avatar" id="user_ico">
-            <div class="profile_details">
-                <div class="name">Romero Guillaume</div>
-                <div class="job">Web Designer</div>
-            </div>
-            <a href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <i class='bx bx-log-out' id="log_out"></i>
-            </a>
+            @auth
+                <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="user_avatar" id="user_ico">
+                <div class="profile_details">
+                    <div class="name">Romero Guillaume</div>
+                    <div class="job">Web Designer</div>
+                </div>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <i class='bx bx-log-out' id="log_out"></i>
+                </a>
+            @endauth
+            @guest
+                <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png" alt="user_avatar"
+                    id="user_ico">
+                <div class="profile_details">
+                    <div class="name">Please log in</div>
+                    <div class="job"></div>
+                </div>
+                <a href="{{ route('login') }}">
+                    <i class='bx bx-log-in' id="log_out"></i>
+                </a>
+            @endguest
+
+
         </div>
     </div>
 </div>

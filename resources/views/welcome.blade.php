@@ -14,26 +14,24 @@
 </head>
 
 <body>
-    @auth
-        <div class="content">
-            @include('site.layout.sidebar')
+    <div class="content">
+        @include('site.layout.sidebar')
+        @auth
             <div class="home_content">
                 @yield('content')
             </div>
             <div class="precision">
                 @yield('precision')
             </div>
-        </div>
-    @endauth
-    @guest
-        <div class="no_content">
-            <div class="home_content">
+        @endauth
+        @guest
+            <div class="no_home_content">
                 <svg width="50" height="50">
                     <use xlink:href="#ouch" />
                 </svg>
                 <span>You are not connected</span>
             </div>
-            <div class="precision">
+            <div class="no_precision">
                 <a href="/login">
                     <i class='bx bx-log-in'></i>
                     <span>Log In</span>
@@ -44,6 +42,11 @@
                     <i class='bx bx-door-open'></i>
                 </a>
             </div>
+        @endguest
+    </div>
+    @guest
+        <div class="no_content">
+
         </div>
     @endguest
 </body>
