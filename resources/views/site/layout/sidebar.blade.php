@@ -60,18 +60,25 @@
     <div class="profile_content">
         <div class="profile">
             @auth
-                <img src="https://avatars.githubusercontent.com/u/32329634?v=4" alt="user_avatar" id="user_ico">
+                @if ($user->avatar_path == 'none')
+                    <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png" alt="user_avatar"
+                        id="user_ico">
+                @else
+                    <img src="{{ $user->avatar_path }}" alt="user_avatar" id="user_ico">
+                @endif
                 <div class="profile_details">
                     <div class="name">Romero Guillaume</div>
                     <div class="job">Web Designer</div>
                 </div>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                    <i class='bx bx-log-out' id="log_out"></i>
-                </a>
+                <div class="icons logoutbtn">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <i class='bx bx-log-out' id="logout"></i>
+                    </a>
+                </div>
             @endauth
             @guest
                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png" alt="user_avatar"
@@ -80,9 +87,16 @@
                     <div class="name">Please log in</div>
                     <div class="job"></div>
                 </div>
-                <a href="{{ route('login') }}">
-                    <i class='bx bx-log-in' id="log_out"></i>
-                </a>
+                <div class="icons">
+                    <a href="{{ route('register') }}">
+                        <span class="tooltip">Register</span>
+                        <i class='bx bx-door-open' id="register"></i>
+                    </a>
+                    <a href="{{ route('login') }}">
+                        <span class="tooltip">Log in</span>
+                        <i class='bx bx-log-in' id="login"></i>
+                    </a>
+                </div>
             @endguest
 
 

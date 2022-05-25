@@ -18,7 +18,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@index');
-Route::get('/settings', [UserController::class, 'show'])->name('settings');
+Route::get('/settings', [UserController::class, 'show'])->middleware('auth')->name('settings');
+Route::post('/settings', [UserController::class, 'store']);
 Route::get('/help', 'App\Http\Controllers\LinksController@help');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
 )->middleware(['auth'])->name('logout');
@@ -30,10 +31,10 @@ Route::post('/posts', [PostsController::class, 'store']);
 Route::get('/posts/{post}', [PostsController::class, 'show'])->whereNumber('post');
 Route::post('/posts/{post}/comments', 'App\Http\Controllers\CommentsController@store')->whereNumber('post');
 
-Route::get('/discussions', [DiscussionController::class, 'index']);
-Route::get('/discussions/create', [DiscussionController::class, 'create']);
-Route::post('/discussions', [DiscussionController::class, 'store']);
-Route::get('/discussions/{id}', [DiscussionController::class, 'show']);
+Route::get('/discussions', [DiscussionController::class, 'index'])->middleware('auth');
+Route::get('/discussions/create', [DiscussionController::class, 'create'])->middleware('auth');
+Route::post('/discussions', [DiscussionController::class, 'store'])->middleware('auth');
+Route::get('/discussions/{id}', [DiscussionController::class, 'show'])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

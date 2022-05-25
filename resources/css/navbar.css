@@ -145,12 +145,13 @@
     transition: all 0.4s ease;
     border-radius: 12px;
     white-space: nowrap;
+    transition: 0;
 }
 
 .sidebar ul li a:hover {
     color: #15101d;
     background: #fff;
-    transition: all 150ms ease;
+    transition: all 350ms ease;
 }
 
 .sidebar ul li i {
@@ -223,16 +224,16 @@
 .profile img {
     height: 50px;
     width: 50px;
-    margin: auto 14px 5px 14px;
+    object-fit: cover;
     border-radius: 12px;
-    transition: all 150ms ease;
+    margin: auto 14px 5px 14px;
+    transition: all 350ms ease;
 }
 
 .content.sb_active .sidebar .profile img{
-    height: 45px;
-    width: 45px;
-    object-fit: cover;
-    border-radius: 12px;
+    height: 35px;
+    width: 35px;
+    margin: auto 5px 12px 5px;
 }
 
 .profile .profile_details .name{
@@ -245,23 +246,68 @@
     font-weight: 400;
 }
 
-.sidebar .profile #log_out{
-    display: none;
+.sidebar .profile .icons{
+    position: relative;
+    width: 100px;
+    height: 100%;
+    margin-right: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar .profile .logoutbtn{
+    justify-content: right;
+    margin-right: 10px;
+}
+.sidebar .profile .icons a{
+    width: 50px;
+    height: 50px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
+    display: none;
+}
+.content.sb_active .sidebar .profile .icons a {
+    opacity: 1;
+    display: grid;
 }
 
-.content.sb_active .sidebar .profile #log_out {
+.sidebar .profile .icons a span{
     position: absolute;
-    bottom: 5px;
-    transform: translateX(-50%);
-    min-width: 50px;
-    line-height: 50px;
-    font-size: 20px;
-    border-radius: 12px;
-    text-align: center;
-    transition: all 0.4s ease;
-    left: 88%;
+    padding: 0 5px;
+    color: #000;
+    background: #fff;
+    white-space: nowrap;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    bottom: 25px;
+    opacity: 0;
+    display: block;
+    transition: 0;
+}
+
+.sidebar .profile .icons a:hover span{
+    bottom: 60px;
     opacity: 1;
     display: block;
-    background: none;
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
+}
+
+.sidebar .profile .icons a i{
+    font-size: 20px;
+}
+
+.sidebar .profile .icons a:hover i{
+    font-size: 50px;
+    color: rgba(0, 255, 0, .8);
+    transition: all 0.5s ease;
+}
+
+
+.sidebar .profile .icons a:hover #logout{
+    font-size: 20px;
+    color: rgba(255, 0, 0, .8);
+    transition: all 1s ease;
 }

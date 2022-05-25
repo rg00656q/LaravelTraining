@@ -14,7 +14,7 @@
                             <label for="group">
                                 Group name
                             </label>
-                            <input type="text" name="group" id="group" placeholder="Enter the group name" required>
+                            <input type="text" name="group_name" id="group" placeholder="Enter the group name" required>
                         </div>
                         <div class="input-box">
                             <label for="description">description</label>

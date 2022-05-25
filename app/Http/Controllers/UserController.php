@@ -12,4 +12,10 @@ class UserController extends Controller
         $user = Auth::user();
         return view('site.settings.myuser', compact('user'));
     }
+
+    public function store(Request $request){
+        $path = $request->file('avatar')->store('public/avatars');
+
+        dd($path);
+    }
 }
