@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,9 +18,8 @@ class DiscussionController extends Controller
         return view('site.discussion.index', compact('discussions'));
     }
 
-    public function show($id){
+    public function show(Discussion $discussion){
         $discussions = Discussion::latest()->get();
-        $discussion = Discussion::findOrFail($id);
         return view('site.discussion.show', compact('discussions', 'discussion'));
     }
 
@@ -55,5 +55,36 @@ class DiscussionController extends Controller
             DB::commit();
             return view('site.discussion.index')->withErrorMessage('Echec');
         }
+    }
+
+    public function adduser(Discussion $discussion){
+        return view('site.discussion.adduser', compact('discussion'));
+    }
+
+    public function store_user(Discussion $discussion){$success = false;
+        DB::beginTransaction();
+
+        $this->validate(request(),[
+            'name' => 'required_without_all:email',
+            'email' => 'required_without_all:name'
+        ]);
+
+        $user_idn = User::all()->where('name', request('name'));
+        $user_ide = User::all()->where('email', request('email'));
+
+        if(($user_idn == null) && ($user_ide == null)){
+            DB::rollback();
+            return view('site.discussion.index')->withErrorMessage('Echec');
+        }
+        if($user_idn == null){
+            $discussion->users()->attach($user_ide);
+            DB::commit();
+            return view('site.discussion.index')->withSuccessMessage('Reussite');
+        }else{
+            $discussion->users()->attach($user_idn);
+            DB::commit();
+            return view('site.discussion.index')->withSuccessMessage('Reussite');
+        }
+
     }
 }

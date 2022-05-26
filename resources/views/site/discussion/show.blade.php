@@ -18,7 +18,7 @@
                             <i class='bx bx-info-circle'></i>
                             <p> Infos </p>
                         </a>
-                        <a href="#">
+                        <a href="/discussions/{{ $discussion->id }}/add">
                             <i class="bx bx-user"></i>
                             <p> Users </p>
                         </a>
@@ -30,8 +30,9 @@
                 </div>
             </div>
 
+            {{-- Coversation --}}
             <div class="conversation">
-                @foreach ($discussion->messages as $message)
+                @foreach ($discussion->messages->sortBy('created_at') as $message)
                     @if ($message->user->id == Auth::user()->id)
                         <div class="bubble user" data-is="You - {{ $message->created_at->diffForHumans() }}">
                             <p> {{ $message->content }} </p>
@@ -43,13 +44,21 @@
                             @endif
                         </div>
                     @else
-                        <div class="bubble them" data-is=" - ">
-                            <img src="{{ asset('pfp/ShuJiii.jpg') }}" alt="Jiii">
-                            <p> Lorem ipsum dolor sit amet. </p>
+                        <div class="bubble them"
+                            data-is="{{ $message->user->name }} - {{ $message->created_at->diffForHumans() }}">
+                            @if ($message->user->avatar_path == 'none')
+                                <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
+                                    alt="user_avatar">
+                            @else
+                                <img src="{{ $message->user->avatar_path }}" alt="user_avatar">
+                            @endif
+                            <p> {{ $message->content }} </p>
                         </div>
                     @endif
                 @endforeach
             </div>
+
+            {{-- Envoi de messages --}}
             <form action="/discussions/{{ $discussion->id }}" method="POST" class="chat-form">
                 @csrf
                 <div class="container-inputs">

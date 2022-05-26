@@ -30,10 +30,12 @@ Route::post('/posts', [PostsController::class, 'store']);
 Route::get('/posts/{post}', [PostsController::class, 'show'])->whereNumber('post');
 Route::post('/posts/{post}/comments', 'App\Http\Controllers\CommentsController@store')->whereNumber('post');
 
-Route::get('/discussions', [DiscussionController::class, 'index'])->middleware('auth');
-Route::get('/discussions/create', [DiscussionController::class, 'create'])->middleware('auth');
-Route::post('/discussions', [DiscussionController::class, 'store'])->middleware('auth');
-Route::get('/discussions/{id}', [DiscussionController::class, 'show'])->middleware('auth');
+Route::get('/discussions', [DiscussionController::class, 'index']);
+Route::get('/discussions/create', [DiscussionController::class, 'create']);
+Route::post('/discussions', [DiscussionController::class, 'store']);
+Route::get('/discussions/{discussion}', [DiscussionController::class, 'show']);
+Route::get('/discussions/{discussion}/add', [DiscussionController::class, 'adduser']);
+Route::post('/discussions/{discussion}/add', [DiscussionController::class, 'store_user']);
 Route::post('/discussions/{discussion}', 'App\Http\Controllers\MessageController@store')->middleware('auth');
 
 Route::get('/dashboard', function () {

@@ -15,15 +15,23 @@
             </div>
             @if (count(Auth::user()->discussions))
                 <div class="discussion">
-                    @foreach (Auth::user()->discussions as $discussion)
+                    @foreach (Auth::user()->discussions->sortByDesc('created_at') as $discussion)
                         <a href="/discussions/{{ $discussion->id }}" aria-current="true">
                             <!-- aria current important -->
                             <div class="discussion_header">
                                 <strong>{{ $discussion->group_name }}</strong>
-                                <small>{{ $discussion->messages->last()->created_at->diffForHumans() }}</small>
+                                @if (count($discussion->messages))
+                                    <small>{{ $discussion->messages->sortBy('created_at')->last()->created_at->diffForHumans() }}</small>
+                                @else
+                                    <small>{{ $discussion->created_at->diffForHumans() }}</small>
+                                @endif
                             </div>
                             <div class="last_message">
-                                {{ $discussion->messages->last()->content }}
+                                @if (count($discussion->messages))
+                                    {{ $discussion->messages->last()->content }}
+                                @else
+                                    No messages... Yet!
+                                @endif
                             </div>
                         </a>
                     @endforeach
