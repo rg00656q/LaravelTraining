@@ -22,6 +22,7 @@
                         <input type="submit" name="submit" value="Add a friend">
                     </div>
                 </form>
+                @include('layouts.errors')
             </div>
         </div>
     </div>
