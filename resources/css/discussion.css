@@ -10,8 +10,9 @@
 }
 
 .discussion_list .header{
-    display: flex;
     position: sticky;
+    display: flex;
+    justify-content: space-between;
     top: 0;
     align-items: center;
     flex-shrink: 0;
@@ -24,23 +25,23 @@
     z-index: 3;
 }
 
-.discussion_list .header:focus,
-.discussion_list .header:hover{
-    color: #1a1e21;
+.discussion_list .header svg{
+    width: 30px;
+    height: 30px;
 }
 
-.discussion_list .header svg{
-    margin-right: .5rem;
+.discussion_list .header span{
+    font-size:20px;
+    font-weight:600;
+    white-space:nowrap;
 }
 
 .discussion_list .header a{
-    position: relative;
-    margin-left: 10rem;
-    margin-right: .5rem;
+    width: 30px;
+    margin: 0 .5rem;
 }
-
 .discussion_list .header a svg{
-    margin-left: 1rem;
+    margin-right: .5rem;
 }
 
 .discussion {
@@ -111,3 +112,21 @@
     text-overflow: ellipsis;
 }
 
+.discussion_list .error{
+    width:100%;
+    height:75px;
+    border-bottom: solid 1px rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.discussion_list .error svg{
+    height: 50px;
+    width:25%;
+}
+.discussion_list .error .error-msg{
+    width: 75%;
+    font-size: 1.2rem;
+    font-weight:600;
+}

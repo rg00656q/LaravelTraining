@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Discussion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DiscussionController extends Controller
@@ -27,11 +28,32 @@ class DiscussionController extends Controller
     }
 
     public function store(){
-        $this->validate(request(),[
-            'group_name' => 'required|min:5'
-        ]);
-        Discussion::create(request(['group_name', 'description']));
+        $success = false;
+        $user_id = Auth::user()->id;
+        DB::beginTransaction();
+        try{
+            $this->validate(request(),[
+                'group_name' => 'required|min:5'
+            ]);
+            $group = new Discussion;
+            $group->group_name = request('group_name');
+            $group->description = request('description');
 
-        return redirect('/discussions');
+            if($group->save()){
+                $group->users()->sync($user_id);
+                $success = true;
+            }
+
+        }catch(\Exception $e){
+            echo 'something went wrong';
+            die();
+        }
+        if($success){
+            DB::commit();
+            return view('site.discussion.index')->withSuccessMessage('Reussite');
+        }else{
+            DB::commit();
+            return view('site.discussion.index')->withErrorMessage('Echec');
+        }
     }
 }

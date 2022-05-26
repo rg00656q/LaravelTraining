@@ -10,6 +10,7 @@ use App\Models\User;
 class Message extends Model
 {
     use HasFactory;
+    protected $fillable = ['user_id', 'discussion_id', 'content'];
 
     public function user(){
         return $this->belongsTo(User::class);

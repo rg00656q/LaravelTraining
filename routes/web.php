@@ -34,6 +34,7 @@ Route::get('/discussions', [DiscussionController::class, 'index'])->middleware('
 Route::get('/discussions/create', [DiscussionController::class, 'create'])->middleware('auth');
 Route::post('/discussions', [DiscussionController::class, 'store'])->middleware('auth');
 Route::get('/discussions/{id}', [DiscussionController::class, 'show'])->middleware('auth');
+Route::post('/discussions/{discussion}', 'App\Http\Controllers\MessageController@store')->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

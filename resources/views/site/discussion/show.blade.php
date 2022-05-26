@@ -32,8 +32,8 @@
 
             <div class="conversation">
                 @foreach ($discussion->messages as $message)
-                    @if ($message->user == Auth::user()->id)
-                        <div class="bubble user" data-is="You - {{ $message->created_at->toFormattedDateString() }}">
+                    @if ($message->user->id == Auth::user()->id)
+                        <div class="bubble user" data-is="You - {{ $message->created_at->diffForHumans() }}">
                             <p> {{ $message->content }} </p>
                             @if (Auth::user()->avatar_path == 'none')
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
@@ -50,13 +50,14 @@
                     @endif
                 @endforeach
             </div>
-            <form class="chat-form">
+            <form action="/discussions/{{ $discussion->id }}" method="POST" class="chat-form">
+                @csrf
                 <div class="container-inputs">
                     <div class="files-logo-cont">
                         <i class='bx bx-upload'></i>
                     </div>
                     <div class="group-inp">
-                        <textarea name="" placeholder="Enter your message here" minlength="1" maxlength="250"></textarea>
+                        <textarea name="content" placeholder="Enter your message here" minlength="1" maxlength="250"></textarea>
                         <i class='bx bx-smile'></i>
                     </div>
                     <button class="submit-btn">
