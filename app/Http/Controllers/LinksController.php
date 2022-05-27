@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LinksController extends Controller
 {
     public function index(){
-        return view('site.dashboard.links');
+        return view('dashboard.links');
     }
 
     public function help(){
-        // dd(DB::getSequence());
-        return view('site.dashboard.test');
+        return view('dashboard.test');
     }
 }

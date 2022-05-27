@@ -13,13 +13,19 @@ body{
     background: #e4e9f7;
 }
 
+.content{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
 .content .home_content{
     position: relative;
     top: 0;
     left: 78px;
     height: 100vh;
     width: calc(100% - 78px);
-    transition: all 0.5s ease;
+    transition: all 350ms ease;
     overflow-x: hidden;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -38,11 +44,94 @@ body{
     height: 100vh;
     width: calc(100% - 458px);
     min-width: 500px;
-    transition: all 0.5s ease;
+    transition: all 350ms ease;
 }
 
 .content.sb_active .precision{
     left: 620px;
     width: 850px;
     max-width: 850px;
+}
+
+/* Guest view */
+
+.content .no_home_content{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    display: flex;
+    justify-content: center;
+}
+.content .no_home_content svg{
+    width: 100px;
+    height: 100px;
+    margin: 1rem auto 0 auto;
+}
+
+.content .no_home_content span{
+    position: absolute;
+    white-space: nowrap;
+    font-size: 28px;
+    font-weight: 600;
+    bottom: 25px;
+}
+
+.content .no_precision{
+    position: absolute;
+    width: 500px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    top: 50%;
+    left: 50%;
+    margin: 100px 0 0 -250px;
+}
+
+.content .no_precision a{
+    position: relative;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.content .no_precision a:first-child{
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+.content .no_precision a:last-child{
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.content .no_precision a:hover,
+.content .no_precision a:focus{
+    background: #d5dae7;
+}
+
+.content .no_precision a i{
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.content .no_precision a:hover i,
+.content .no_precision a:focus i{
+    color: rgba(255, 0, 0, 0.8);
+}
+
+.content .no_precision a span{
+    font-size: 28px;
+    margin-bottom: 7px;
+    white-space: nowrap;
+}
+
+.content .no_precision a:first-child span{
+    color: #43c862;
+    margin-left: 1rem;
+}
+
+.content .no_precision a:last-child span{
+    color: #ffa155;
+    margin-right: 1rem;
 }
