@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DiscussionController;
 
@@ -19,16 +18,11 @@ use App\Http\Controllers\DiscussionController;
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/settings', [UserController::class, 'show'])->middleware('auth')->name('settings');
 Route::post('/settings', [UserController::class, 'store']);
-Route::get('/help', 'App\Http\Controllers\LinksController@help');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
 )->middleware(['auth'])->name('logout');
 
 Route::get('/links', 'App\Http\Controllers\LinksController@index');
-Route::get('/posts', [PostsController::class, 'index'])->name('blog');
-Route::get('/posts/create', [PostsController::class, 'create']);
-Route::post('/posts', [PostsController::class, 'store']);
-Route::get('/posts/{post}', [PostsController::class, 'show'])->whereNumber('post');
-Route::post('/posts/{post}/comments', 'App\Http\Controllers\CommentsController@store')->whereNumber('post');
+Route::get('/help', 'App\Http\Controllers\LinksController@help');
 
 Route::get('/discussions', [DiscussionController::class, 'index']);
 Route::get('/discussions/create', [DiscussionController::class, 'create']);

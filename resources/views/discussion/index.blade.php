@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.master')
 @section('content')
     <div class="home_content">
         <div class="discussion_list">
@@ -48,5 +48,4 @@
             @endif
         </div>
     </div>
-    @include('site.layout.guest')
 @endsection

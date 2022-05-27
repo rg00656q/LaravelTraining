@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.master')
 @section('content')
     <div class="home_content">
         <div class="form">
@@ -31,5 +31,4 @@
             $('#avatar').prop(class = 'valid', $('#avatar').val());
         });
     </script>
-    @include('site.layout.guest')
 @endsection

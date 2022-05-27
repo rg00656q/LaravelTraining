@@ -1,4 +1,4 @@
-@extends('site.discussion.index')
+@extends('discussion.index')
 @section('precision')
     <div class="precision">
         <div class="chat-global">
@@ -87,5 +87,4 @@
             dropdm.classList.toggle("show");
         }
     </script>
-    @include('site.layout.guest')
 @endsection

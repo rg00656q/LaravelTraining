@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.master')
 @section('content')
     <div class="home_content">
         <div class="form">
@@ -60,9 +60,6 @@
         </div>
     </div>
     <script>
-        $('#avatar input').change(function() {
-            $('#avatar').prop(class = 'valid', $('#avatar').val());
-        });
+        // Lignes de code pour verifier que l'image est ajoutee et changer la couleur de la bordure
     </script>
-    @include('site.layout.guest')
 @endsection

@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('layouts.master')
 
 @section('content')
     <div class="home_content">
@@ -6,14 +6,6 @@
             <div class="work">
                 <button id="wlb">Work</button>
                 <ul class="mybg">
-                    <li>
-                        <a href="{{ route('blog') }}" target="_blank">
-                            <svg class="me-2" width="20" height="20">
-                                <use xlink:href="#blog" />
-                            </svg>
-                            <span class="item">Blog</span>
-                        </a>
-                    </li>
                     <li>
                         <a href="https://github.com/rg00656q" target="_blank">
                             <svg class="me-2" width="20" height="20">
