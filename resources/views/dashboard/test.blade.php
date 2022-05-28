@@ -5,163 +5,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>helping</title>
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
     <style>
-        .checkbox {
-            width: 52px;
-            height: 32px;
-            padding: 4px;
-
-            display: flex;
-            align-items: center;
-
-            background: #49454f;
-
-            border: solid 2px #938f99;
-            border-radius: 24px;
-
-            transition: border-color 200ms, background-color 200ms;
-
-            cursor: pointer;
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: green;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
         }
 
-        .checkbox::before {
-            content: "";
-            display: inline-block;
-
-            width: 16px;
-            height: 16px;
-            border-radius: 12px;
-
-            background-color: #938f99;
-
-            transition: width 200ms, height 200ms,
-                transform 200ms, background-color 200ms;
+        h1 {
+            color: goldenrod
         }
 
-        .checkbox.on {
-            background-color: #d0bcff;
-            border-color: #d0bcff;
+        #message-el {
+            font-style: italic;
         }
 
-        .checkbox.on::before {
-            background-color: #381e72;
-            width: 24px;
-            height: 24px;
-            transform: translateX(18px);
-        }
-
-        #nav-icon {
-            width: 60px;
-            height: 45px;
-            position: relative;
-            margin: 50px auto;
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-            -webkit-transition: .5s ease-in-out;
-            -moz-transition: .5s ease-in-out;
-            -o-transition: .5s ease-in-out;
-            transition: .5s ease-in-out;
-            cursor: pointer;
-        }
-
-        #nav-icon span {
-            display: block;
-            position: absolute;
-            height: 9px;
-            width: 100%;
-            background: #bbb;
-            border-radius: 9px;
-            opacity: 1;
-            left: 0;
-            -webkit-transform: rotate(0deg);
-            -moz-transform: rotate(0deg);
-            -o-transform: rotate(0deg);
-            transform: rotate(0deg);
-            -webkit-transition: .25s ease-in-out;
-            -moz-transition: .25s ease-in-out;
-            -o-transition: .25s ease-in-out;
-            transition: .25s ease-in-out;
-        }
-
-        #nav-icon span:nth-child(1) {
-            top: 0px;
-        }
-
-        #nav-icon span:nth-child(2),
-        #nav-icon span:nth-child(3) {
-            top: 18px;
-        }
-
-        #nav-icon span:nth-child(4) {
-            top: 36px;
-        }
-
-        #nav-icon.open span:nth-child(1) {
-            top: 18px;
-            width: 0%;
-            left: 50%;
-        }
-
-        #nav-icon.open span:nth-child(2) {
-            -webkit-transform: rotate(45deg);
-            -moz-transform: rotate(45deg);
-            -o-transform: rotate(45deg);
-            transform: rotate(45deg);
-        }
-
-        #nav-icon.open span:nth-child(3) {
-            -webkit-transform: rotate(-45deg);
-            -moz-transform: rotate(-45deg);
-            -o-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-        }
-
-        #nav-icon.open span:nth-child(4) {
-            top: 18px;
-            width: 0%;
-            left: 50%;
+        button {
+            width: 150px;
+            padding: 5px 0;
+            background: goldenrod;
+            border: none;
+            border-radius: 2px;
+            color: #016f32;
+            font-weight: bold;
+            margin-bottom: 2px;
+            margin-top: 2px;
         }
 
     </style>
 </head>
 
 <body>
-    <div class="elt">
-        <button class="checkbox" role="switch" aria-checked="false"></button>
-    </div>
-    <div class="elt">
-        <div id="nav-icon">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-    <div class="elt">
-    </div>
+    <h1>Blackjack</h1>
+    <p id="message-el">Want to play a round?</p>
+    <p id="card-el">Cards :</p>
+    <p id="sum-el">Sum :</p>
+    <button id="startBtn" onclick="startGame()">START GAME</button><br>
+    <button id="drawBtn" onclick="addCard()">NEW CARD</button>
+    <p id="player-el"></p>
 
 
     <script>
-        let checkbox = document.querySelector('.checkbox');
+        let cards = []
+        let newCard = 0;
+        let sum = 0;
+        let hasBlackJack = false;
+        let isAlive = false;
+        let message = "";
+        let messageEl = document.getElementById('message-el');
+        let cardEl = document.getElementById('card-el');
+        let sumEl = document.getElementById('sum-el');
+        let player = {
+            name: 'Guillaume',
+            chips: 200
+        }
+        let playerEl = document.querySelector('#player-el');
 
-        checkbox.addEventListener('click', () => {
-            if (checkbox.classList.contains('on')) {
-                checkbox.setAttribute('aria-checked', 'false');
+
+        function getRandomCard() {
+            let randomNumber = Math.floor(Math.random() * 13) + 1;
+            if (randomNumber === 1) {
+                return 11
+            } else if (randomNumber > 10) {
+                return 10
             } else {
-                checkbox.setAttribute('aria-checked', 'true');
+                return randomNumber;
             }
-            checkbox.classList.toggle('on');
-        });
+        }
 
+        /*
+         * As = 11 ou 1 (a mettre en place plus tard)
+         * J, Q et K vallent 10
+         * les chiffres vallent leur chiffre
+         */
+        function renderGame() {
+            playerEl.textContent = player.name + ': $' + player.chips;
+            cardEl.textContent = 'Cards : '
+            for (let count = 0; count < cards.length; count++) {
+                cardEl.textContent += cards[count] + ' ';
+            }
+            sumEl.textContent = 'Sum : ' + sum;
+            if (sum < 21) {
+                message = 'Do you want to draw a new card?';
+            } else if (sum > 21) {
+                message = 'You lost, try again!';
+                isAlive = false;
+            } else {
+                message = 'You win! congratulations';
+                hasBlackJack = true;
+                player.chips += 20;
+            }
+            messageEl.textContent = message;
+        }
 
-        let hamburger = document.querySelector('#nav-icon');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-        });
+        function addCard() {
+            if (isAlive && !(hasBlackJack)) {
+                newCard = getRandomCard();
+                cards.push(newCard);
+                sum += newCard;
+                renderGame();
+            }
+        }
+
+        function startGame() {
+            isAlive = true;
+            hasBlackJack = false;
+            player.chips -= 10;
+            let cardOne = getRandomCard();
+            let cardTwo = getRandomCard();
+            cards = [cardOne, cardTwo];
+            sum = cardOne + cardTwo;
+            renderGame();
+        }
     </script>
 </body>
 
