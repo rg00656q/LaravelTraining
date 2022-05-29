@@ -23,11 +23,11 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/help" target="_blank">
+                        <a href="{{ route('test') }}" target="_blank">
                             <svg class="me-2" width="20" height="20">
                                 <use xlink:href="#scorpion" />
                             </svg>
-                            <span class="item">Aide</span>
+                            <span class="item">Testing room</span>
                         </a>
                     </li>
                 </ul>

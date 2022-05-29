@@ -7,121 +7,120 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        html,
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            background-color: green;
-            text-align: center;
-            color: #fff;
-            font-weight: bold;
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            min-width: 400px;
         }
 
-        h1 {
-            color: goldenrod
-        }
-
-        #message-el {
-            font-style: italic;
+        input {
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            /* After width and padding we have 100%+10px+10px */
+            box-sizing: border-box;
+            /* Will make it so the padding shows on the right, not after */
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: 2px solid #5f9341;
         }
 
         button {
-            width: 150px;
-            padding: 5px 0;
-            background: goldenrod;
+            background-color: #5f9341;
+            color: #fff;
             border: none;
-            border-radius: 2px;
-            color: #016f32;
+            margin-top: 4px;
+            padding: 10px 20px;
             font-weight: bold;
-            margin-bottom: 2px;
-            margin-top: 2px;
+            border: 1px solid #5f9341;
+        }
+
+        #delete-btn {
+            color: #5f9341;
+            background: #fff;
+        }
+
+        ul {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-top: 5px;
+        }
+
+        a {
+            color: #5f9341;
         }
 
     </style>
 </head>
 
 <body>
-    <h1>Blackjack</h1>
-    <p id="message-el">Want to play a round?</p>
-    <p id="card-el">Cards :</p>
-    <p id="sum-el">Sum :</p>
-    <button id="startBtn" onclick="startGame()">START GAME</button><br>
-    <button id="drawBtn" onclick="addCard()">NEW CARD</button>
-    <p id="player-el"></p>
-
+    <input type="text" id="input-el">
+    <button id="input-btn">SAVE INPUT</button>
+    <button id="tab-btn">SAVE TAB</button>
+    <button id="delete-btn">DELETE ALL</button>
+    <ul></ul>
 
     <script>
-        let cards = []
-        let newCard = 0;
-        let sum = 0;
-        let hasBlackJack = false;
-        let isAlive = false;
-        let message = "";
-        let messageEl = document.getElementById('message-el');
-        let cardEl = document.getElementById('card-el');
-        let sumEl = document.getElementById('sum-el');
-        let player = {
-            name: 'Guillaume',
-            chips: 200
-        }
-        let playerEl = document.querySelector('#player-el');
+        const inputBtn = document.getElementById("input-btn")
+        const inputEl = document.getElementById("input-el")
+        const ulEl = document.querySelector("ul")
+        const deleteBtn = document.querySelector("#delete-btn")
+        const tabBtn = document.querySelector("#tab-btn")
+        let myInputs = []
+        const inputsFromLocalStorage = JSON.parse(localStorage.getItem("myInputs"))
 
-
-        function getRandomCard() {
-            let randomNumber = Math.floor(Math.random() * 13) + 1;
-            if (randomNumber === 1) {
-                return 11
-            } else if (randomNumber > 10) {
-                return 10
-            } else {
-                return randomNumber;
-            }
+        // Affiche les pages a l'ouverture
+        if (inputsFromLocalStorage) {
+            myInputs = inputsFromLocalStorage
+            render(myInputs)
         }
 
-        /*
-         * As = 11 ou 1 (a mettre en place plus tard)
-         * J, Q et K vallent 10
-         * les chiffres vallent leur chiffre
-         */
-        function renderGame() {
-            playerEl.textContent = player.name + ': $' + player.chips;
-            cardEl.textContent = 'Cards : '
-            for (let count = 0; count < cards.length; count++) {
-                cardEl.textContent += cards[count] + ' ';
-            }
-            sumEl.textContent = 'Sum : ' + sum;
-            if (sum < 21) {
-                message = 'Do you want to draw a new card?';
-            } else if (sum > 21) {
-                message = 'You lost, try again!';
-                isAlive = false;
-            } else {
-                message = 'You win! congratulations';
-                hasBlackJack = true;
-                player.chips += 20;
-            }
-            messageEl.textContent = message;
-        }
+        // Sauvegarde la page actuelle
+        tabBtn.addEventListener("click", function() {
+            browser.tabs.query({
+                    active: true,
+                    currentWindow: true
+                })
+                .then(tabs => {
+                    console.log(tabs[0].url)
+                    myInputs.push(tabs[0].url)
+                    localStorage.setItem("myInputs", JSON.stringify(myInputs))
+                    render(myInputs)
+                });
+        });
 
-        function addCard() {
-            if (isAlive && !(hasBlackJack)) {
-                newCard = getRandomCard();
-                cards.push(newCard);
-                sum += newCard;
-                renderGame();
-            }
-        }
+        // Supprime les pages sauvegardes
+        deleteBtn.addEventListener("dblclick", function() {
+            localStorage.clear()
+            myInputs = []
+            render(myInputs)
+        });
 
-        function startGame() {
-            isAlive = true;
-            hasBlackJack = false;
-            player.chips -= 10;
-            let cardOne = getRandomCard();
-            let cardTwo = getRandomCard();
-            cards = [cardOne, cardTwo];
-            sum = cardOne + cardTwo;
-            renderGame();
+        // Sauvegarde notre page avec le local storage
+        inputBtn.addEventListener("click", function() {
+            myInputs.push(inputEl.value)
+            localStorage.setItem("myInputs", JSON.stringify(myInputs)) //Transformation de notre objet en string
+            inputEl.value = "" // reinitialisation de notre input pour recevoir la valeur suivante
+            render(myInputs)
+        });
+
+        // Affichage des pages sauvegardes
+        function render(inputs) {
+            let listItems = ""
+            for (let i = 0; i < inputs.length; i++) {
+                listItems += `
+            <li>
+                <a href='${inputs[i]}' target='_blank'>
+                    ${inputs[i]}
+                </a>
+            </li>`
+            }
+            ulEl.innerHTML = listItems
         }
     </script>
 </body>

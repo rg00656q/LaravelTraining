@@ -22,7 +22,8 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
 )->middleware(['auth'])->name('logout');
 
 Route::get('/links', 'App\Http\Controllers\LinksController@index');
-Route::get('/help', 'App\Http\Controllers\LinksController@help');
+Route::get('/testing room', 'App\Http\Controllers\LinksController@test')->name('test');
+Route::get('/blackjack', 'App\Http\Controllers\LinksController@blackjack');
 
 Route::get('/discussions', [DiscussionController::class, 'index']);
 Route::get('/discussions/create', [DiscussionController::class, 'create']);

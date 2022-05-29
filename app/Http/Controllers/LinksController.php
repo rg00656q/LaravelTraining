@@ -11,7 +11,11 @@ class LinksController extends Controller
         return view('dashboard.links');
     }
 
-    public function help(){
+    public function test(){
         return view('dashboard.test');
+    }
+
+    public function blackjack(){
+        return view('dashboard.blackjack');
     }
 }
