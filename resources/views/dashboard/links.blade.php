@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">
                             <svg class="me-2" width="20" height="20">
                                 <use xlink:href="#pole-emploi" />
                             </svg>
@@ -28,6 +28,14 @@
                                 <use xlink:href="#scorpion" />
                             </svg>
                             <span class="item">Testing room</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://mailtrap.io/inboxes" target="_blank">
+                            <svg class="me-2" width="20" height="20">
+                                <use xlink:href="#mail" />
+                            </svg>
+                            <span class="item">MailTrap</span>
                         </a>
                     </li>
                 </ul>

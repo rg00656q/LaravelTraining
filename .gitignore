@@ -19,7 +19,9 @@ App/Http/Controllers/Auth/
 App/Http/Middleware/
 App/Http/Requests/
 App/Http/Kernel.php
-App/Providers/
+App/Providers/AppServiceProvider.php
+App/Providers/BroadcastServiceProvider.php
+App/Providers/EventServiceProvider.php
 App/View
 bootstrap/
 config/

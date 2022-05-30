@@ -72,9 +72,9 @@
         const deleteBtn = document.querySelector("#delete-btn")
         const tabBtn = document.querySelector("#tab-btn")
         let myInputs = []
-        const inputsFromLocalStorage = JSON.parse(localStorage.getItem("myInputs"))
 
         // Affiche les pages a l'ouverture
+        const inputsFromLocalStorage = JSON.parse(localStorage.getItem("myInputs"))
         if (inputsFromLocalStorage) {
             myInputs = inputsFromLocalStorage
             render(myInputs)

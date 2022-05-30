@@ -1,6 +1,6 @@
 <div class="sidebar">
     <div class="logo_content">
-        <a href="/" class="logo">
+        <a href="{{ route('home') }}" class="logo">
             <svg width="25" height="25">
                 <use xlink:href="#scorpion" />
             </svg>

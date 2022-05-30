@@ -15,7 +15,7 @@ use App\Http\Controllers\DiscussionController;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/settings', [UserController::class, 'show'])->middleware('auth')->name('settings');
 Route::post('/settings', [UserController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
