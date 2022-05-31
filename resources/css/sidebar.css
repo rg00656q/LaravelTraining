@@ -215,6 +215,9 @@
     justify-content: space-between;
     align-items: center;
 }
+.sidebar .profile_content .profile_actions .logoutBtn{
+    justify-content: center;
+}
 
 .sidebar .profile_content .profile_actions .icons a{
     width: 50%;
@@ -225,11 +228,21 @@
     color: #000;
 }
 
+.sidebar .profile_content .profile_actions .logoutBtn a{
+    width: 100%;
+}
+
 .sidebar .profile_content .profile_actions .icons a:hover{
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 200, 0, 0.5);
 }
 .sidebar .profile_content .profile_actions .icons a:focus{
-    color: rgba(0, 0, 0, 0.3);
+    color: rgba(0, 200, 0, 0.3);
+}
+.sidebar .profile_content .profile_actions .logoutBtn a:hover{
+    color: rgba(255, 0, 0, 1);
+}
+.sidebar .profile_content .profile_actions .logoutBtn a:focus{
+    color: rgba(255, 0, 0, .5);
 }
 
 .sidebar .profile_content .profile_actions .icons a i{
@@ -257,6 +270,7 @@
 }
 
 .sidebar .profile_content .profile .profile_details {
+    width: calc(100% - 50px);
     display: flex;
     flex-direction: column;
     justify-content: center;

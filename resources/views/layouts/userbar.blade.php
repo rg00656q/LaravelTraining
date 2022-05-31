@@ -1,13 +1,14 @@
 <div class="profile_content">
     <div class="profile_actions">
         @auth
-            <div class="icons logoutbtn">
+            <div class="icons logoutBtn">
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                     <i class='bx bx-log-out' id="logout"></i>
+                    <span class="tooltip">Log out</span>
                 </a>
             </div>
         @endauth

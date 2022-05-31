@@ -56,34 +56,25 @@ class DiscussionController extends Controller
     }
 
     public function store_user(Discussion $discussion){
-        DB::beginTransaction();
+        // Validation
         $this->validate(request(),[
-            'name' => 'required_without:email',
-            'email' => 'required_without:name'
+            'name' => 'required',
         ]);
 
-        $user_idn = User::all()->where('name', request('name'));
-        $user_ide = User::all()->where('email', request('email'));
-
-        if(($user_idn != null) && ($user_ide != null)){
-            DB::rollback();
+        // la personne y est deja?
+        $newuser = User::where('name', request('name'))->first();
+        if(!$newuser){
             return back();
         }
-        if($user_idn == null){
-            DB::table('discussion_user')->insert([
-                ['discussion_id' => $discussion->id, 'user_id' => $user_ide,
-                'created_at' => SYSDATE(), 'updated_at' => SYSDATE()]
-            ]);
-            DB::commit();
-            return view('discussion.index');
-        }else{
-            DB::table('discussion_user')->insert([
-                ['discussion_id' => $discussion->id, 'user_id' => $user_idn,
-                'created_at' => SYSDATE, 'updated_at' => SYSDATE]
-            ]);
-            DB::commit();
-            return view('discussion.index');
+        foreach ($discussion->users as $user){
+            if($user->id == $newuser->id){
+                return back();
+            }
         }
+
+        // Ajout de l'utilisateur selon la valeur entree
+        $discussion->users()->attach($newuser->id);
+        return back();
 
     }
 }

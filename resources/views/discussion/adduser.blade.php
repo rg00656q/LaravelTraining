@@ -1,6 +1,16 @@
 @extends('layouts.master')
 @section('content')
     <div class="home_content">
+        <div class="user_list">
+            <ul>
+                @foreach ($discussion->users as $user)
+                    <li>{{ $user->name }} [
+                        <a href="#">Remove</a>
+                        ]
+                    </li>
+                @endforeach
+            </ul>
+        </div>
         <div class="form">
             <div class="formelt">
                 <div class="title">
@@ -12,10 +22,6 @@
                         <div class="input-box">
                             <span>Add by username</span>
                             <input type="text" name="name" id="name" placeholder="Enter their username">
-                        </div>
-                        <div class="input-box">
-                            <span>Add by email adress</span>
-                            <input type="text" name="email" id="email" placeholder="Enter their email">
                         </div>
                     </div>
                     <div class="submitbtn">

@@ -36,7 +36,7 @@
                     @if ($message->user->id == Auth::user()->id)
                         <div class="bubble user" data-is="You - {{ $message->created_at->diffForHumans() }}">
                             <p> {{ $message->content }} </p>
-                            @if (Auth::user()->avatar_path == 'none')
+                            @if (Auth::user()->avatar_path == null)
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
                                     alt="user_avatar">
                             @else
@@ -46,7 +46,7 @@
                     @else
                         <div class="bubble them"
                             data-is="{{ $message->user->name }} - {{ $message->created_at->diffForHumans() }}">
-                            @if ($message->user->avatar_path == 'none')
+                            @if ($message->user->avatar_path == null)
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
                                     alt="user_avatar">
                             @else
