@@ -23,6 +23,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
 
 Route::get('/links', 'App\Http\Controllers\LinksController@index');
 Route::get('/testing room', 'App\Http\Controllers\LinksController@test')->name('test');
+Route::get('/mail test', 'App\Http\Controllers\LinksController@sendMail');
 Route::get('/blackjack', 'App\Http\Controllers\LinksController@blackjack');
 
 Route::get('/discussions', [DiscussionController::class, 'index']);

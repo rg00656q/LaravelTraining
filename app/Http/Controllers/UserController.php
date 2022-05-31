@@ -10,7 +10,8 @@ class UserController extends Controller
 {
     public function show(){
         $user = Auth::user();
-        return view('settings.edituser', compact('user'));
+        $message = 'Edit your profile';
+        return view('settings.edituser', compact('user', 'message'));
     }
 
     public function store(Request $request){

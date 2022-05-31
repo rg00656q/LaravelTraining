@@ -38,6 +38,14 @@
                             <span class="item">MailTrap</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/mail test" target="_blank">
+                            <svg class="me-2" width="20" height="20">
+                                <use xlink:href="#mail" />
+                            </svg>
+                            <span class="item">Contact me</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="social">

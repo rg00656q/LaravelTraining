@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class LinksController extends Controller
 {
@@ -23,5 +25,14 @@ class LinksController extends Controller
 
     public function blackjack(){
         return view('dashboard.blackjack');
+    }
+
+    public function sendMail(){
+        if(!Gate::allows('access-admin')){
+            abort('403');
+        }
+        $user = Auth::user();
+        Mail::to($user['email'])->send(new ContactMail($user));
+        dd('mail sent!');
     }
 }

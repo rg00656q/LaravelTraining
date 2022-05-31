@@ -4,7 +4,7 @@
         <div class="form">
             <div class="formelt">
                 <div class="title">
-                    Your informations
+                    {{ $message }}
                 </div>
                 <form action="/settings" method="POST" enctype="multipart/form-data">
                     @csrf
