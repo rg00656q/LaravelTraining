@@ -10,26 +10,6 @@
                     @csrf
                     <div class="details">
                         <div class="input-box">
-                            <span>Username</span>
-                            <input type="text" name="name" id="name" placeholder="Enter your username"
-                                value="{{ $user->name }}" required>
-                        </div>
-                        <div class="input-box">
-                            <span>Email</span>
-                            <input type="text" name="email" id="email" placeholder="Enter your email adress"
-                                value="{{ $user->email }}" required>
-                        </div>
-                        <div class="input-box">
-                            <span>Password</span>
-                            <input type="password" name="password" id="password" placeholder="Enter your password" value=""
-                                required>
-                        </div>
-                        <div class="input-box">
-                            <span>Repeat Password</span>
-                            <input type="password" name="password" id="password" placeholder="Repeat your password" value=""
-                                required>
-                        </div>
-                        <div class="input-box">
                             <span>First name</span>
                             <input type="text" name="first_name" id="first_name" placeholder="Enter your first name"
                                 value="{{ $user->first_name }}">

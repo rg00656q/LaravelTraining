@@ -44,7 +44,7 @@ class DiscussionController extends Controller
         }
         if($success){
             DB::commit();
-            return view('discussion.index')->withSuccessMessage('Reussite');
+            return view('discussion.index');
         }else{
             DB::commit();
             return view('discussion.index')->withErrorMessage('Echec');
@@ -55,12 +55,11 @@ class DiscussionController extends Controller
         return view('discussion.adduser', compact('discussion'));
     }
 
-    public function store_user(Discussion $discussion){$success = false;
+    public function store_user(Discussion $discussion){
         DB::beginTransaction();
-
         $this->validate(request(),[
-            'name' => 'required_without_all:email',
-            'email' => 'required_without_all:name'
+            'name' => 'required_without:email',
+            'email' => 'required_without:name'
         ]);
 
         $user_idn = User::all()->where('name', request('name'));
@@ -68,16 +67,22 @@ class DiscussionController extends Controller
 
         if(($user_idn != null) && ($user_ide != null)){
             DB::rollback();
-            return view('discussion.index')->withErrorMessage('Echec');
+            return back();
         }
         if($user_idn == null){
-            $discussion->users()->attach($user_ide);
+            DB::table('discussion_user')->insert([
+                ['discussion_id' => $discussion->id, 'user_id' => $user_ide,
+                'created_at' => SYSDATE(), 'updated_at' => SYSDATE()]
+            ]);
             DB::commit();
-            return view('discussion.index')->withSuccessMessage('Reussite');
+            return view('discussion.index');
         }else{
-            $discussion->users()->attach($user_idn);
+            DB::table('discussion_user')->insert([
+                ['discussion_id' => $discussion->id, 'user_id' => $user_idn,
+                'created_at' => SYSDATE, 'updated_at' => SYSDATE]
+            ]);
             DB::commit();
-            return view('discussion.index')->withSuccessMessage('Reussite');
+            return view('discussion.index');
         }
 
     }

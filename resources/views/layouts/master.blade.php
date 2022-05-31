@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="content">
+    <div class="content sb_active">
         @include('layouts.sidebar')
         @yield('content')
         @yield('precision')

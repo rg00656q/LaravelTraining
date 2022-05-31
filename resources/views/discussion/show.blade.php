@@ -40,7 +40,7 @@
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
                                     alt="user_avatar">
                             @else
-                                <img src="{{ Auth::user()->avatar_path }}" alt="user_avatar">
+                                <img src="{{ Storage::url(Auth::user()->avatar_path) }}" alt="user_avatar">
                             @endif
                         </div>
                     @else
@@ -50,7 +50,7 @@
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
                                     alt="user_avatar">
                             @else
-                                <img src="{{ $message->user->avatar_path }}" alt="user_avatar">
+                                <img src="{{ Storage::url($message->user->avatar_path) }}" alt="user_avatar">
                             @endif
                             <p> {{ $message->content }} </p>
                         </div>

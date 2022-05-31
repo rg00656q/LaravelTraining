@@ -26,9 +26,5 @@
             </div>
         </div>
     </div>
-    <script>
-        $('#avatar input').change(function() {
-            $('#avatar').prop(class = 'valid', $('#avatar').val());
-        });
-    </script>
+    <script></script>
 @endsection
