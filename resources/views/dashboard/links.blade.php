@@ -46,6 +46,12 @@
                             <span class="item">Contact me</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="https://laravel.com/docs/9.x/" target="_blank">
+                            <img src="https://laravel.com/img/logomark.min.svg" alt="laravel_logo" width="20" height="20">
+                            <span class="item">Documentation Laravel</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="social">

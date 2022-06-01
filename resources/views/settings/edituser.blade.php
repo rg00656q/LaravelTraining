@@ -6,7 +6,7 @@
                 <div class="title">
                     {{ $message }}
                 </div>
-                <form action="/settings" method="POST" enctype="multipart/form-data">
+                <form action="/user" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="details">
                         <div class="input-box">
