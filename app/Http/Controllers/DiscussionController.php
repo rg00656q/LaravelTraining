@@ -39,46 +39,59 @@ class DiscussionController extends Controller
         $group->description = request('description');
 
         if($group->save()){
-            $group->users()->sync($user_id);
+            $group->users()->attach($user_id, ['role'=> 'manager']);
             $success = true;
         }
         if($success){
             DB::commit();
-            return view('discussion.index')->withSuccessMessage('Reussite');
+            return view('discussion.index');
         }else{
             DB::commit();
             return view('discussion.index')->withErrorMessage('Echec');
         }
     }
 
-    public function adduser(Discussion $discussion){
-        return view('discussion.adduser', compact('discussion'));
+    public function list_user(Discussion $discussion){
+        return view('discussion.list_user', compact('discussion'));
     }
 
-    public function store_user(Discussion $discussion){$success = false;
-        DB::beginTransaction();
-
+    public function store_user(Discussion $discussion){
+        // Validation
         $this->validate(request(),[
-            'name' => 'required_without_all:email',
-            'email' => 'required_without_all:name'
+            'name' => 'required',
         ]);
 
-        $user_idn = User::all()->where('name', request('name'));
-        $user_ide = User::all()->where('email', request('email'));
-
-        if(($user_idn != null) && ($user_ide != null)){
-            DB::rollback();
-            return view('discussion.index')->withErrorMessage('Echec');
+        // la personne y est deja?
+        $newuser = User::where('name', request('name'))->first();
+        if(!$newuser){
+            return back();
         }
-        if($user_idn == null){
-            $discussion->users()->attach($user_ide);
-            DB::commit();
-            return view('discussion.index')->withSuccessMessage('Reussite');
+        foreach ($discussion->users as $user){
+            if($user->id == $newuser->id){
+                return back();
+            }
+        }
+
+        // Ajout de l'utilisateur selon la valeur entree
+        $discussion->users()->attach($newuser->id, ['role' => 'user']);
+        return back();
+    }
+
+    public function update_role(Discussion $discussion, User $user){
+        if($discussion->users->where('id', $user->id)->first()->pivot->role == 'user'){
+            $discussion->users()->UpdateExistingPivot($user->id, [
+                'role' => 'manager',
+            ]);
         }else{
-            $discussion->users()->attach($user_idn);
-            DB::commit();
-            return view('discussion.index')->withSuccessMessage('Reussite');
+            $discussion->users()->UpdateExistingPivot($user->id, [
+            'role' => 'user',
+        ]);
         }
+        return back();
+    }
 
+    public function destroy(Discussion $discussion, User $user){
+        $discussion->users()->detach($user->id);
+        return back();
     }
 }

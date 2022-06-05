@@ -2,6 +2,8 @@
 @section('precision')
     <div class="precision">
         <div class="chat-global">
+
+            {{-- En-tete --}}
             <div class="nav-top">
                 <div class="group">
                     <img src="https://avatars.githubusercontent.com/u/32329634?v=4" />
@@ -18,7 +20,7 @@
                             <i class='bx bx-info-circle'></i>
                             <p> Infos </p>
                         </a>
-                        <a href="/discussions/{{ $discussion->id }}/add">
+                        <a href="/discussions/{{ $discussion->id }}/users">
                             <i class="bx bx-user"></i>
                             <p> Users </p>
                         </a>
@@ -30,27 +32,27 @@
                 </div>
             </div>
 
-            {{-- Coversation --}}
+            {{-- Conversation --}}
             <div class="conversation">
                 @foreach ($discussion->messages->sortBy('created_at') as $message)
                     @if ($message->user->id == Auth::user()->id)
                         <div class="bubble user" data-is="You - {{ $message->created_at->diffForHumans() }}">
                             <p> {{ $message->content }} </p>
-                            @if (Auth::user()->avatar_path == 'none')
+                            @if (Auth::user()->avatar_path == null)
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
                                     alt="user_avatar">
                             @else
-                                <img src="{{ Auth::user()->avatar_path }}" alt="user_avatar">
+                                <img src="{{ Storage::url(Auth::user()->avatar_path) }}" alt="user_avatar">
                             @endif
                         </div>
                     @else
                         <div class="bubble them"
                             data-is="{{ $message->user->name }} - {{ $message->created_at->diffForHumans() }}">
-                            @if ($message->user->avatar_path == 'none')
+                            @if ($message->user->avatar_path == null)
                                 <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png"
                                     alt="user_avatar">
                             @else
-                                <img src="{{ $message->user->avatar_path }}" alt="user_avatar">
+                                <img src="{{ Storage::url($message->user->avatar_path) }}" alt="user_avatar">
                             @endif
                             <p> {{ $message->content }} </p>
                         </div>

@@ -15,21 +15,29 @@ use App\Http\Controllers\DiscussionController;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/user', [UserController::class, 'show'])->middleware('auth')->name('userinfo');
+Route::post('/user', [UserController::class, 'store']);
 Route::get('/settings', [UserController::class, 'show'])->middleware('auth')->name('settings');
 Route::post('/settings', [UserController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
 )->middleware(['auth'])->name('logout');
 
 Route::get('/links', 'App\Http\Controllers\LinksController@index');
-Route::get('/help', 'App\Http\Controllers\LinksController@help');
+Route::get('/testing room', 'App\Http\Controllers\LinksController@test')->name('test');
+Route::get('/mail test', 'App\Http\Controllers\LinksController@sendMail');
+Route::get('/blackjack', 'App\Http\Controllers\LinksController@blackjack');
 
-Route::get('/discussions', [DiscussionController::class, 'index']);
-Route::get('/discussions/create', [DiscussionController::class, 'create']);
-Route::post('/discussions', [DiscussionController::class, 'store']);
-Route::get('/discussions/{discussion}', [DiscussionController::class, 'show']);
-Route::get('/discussions/{discussion}/add', [DiscussionController::class, 'adduser']);
-Route::post('/discussions/{discussion}/add', [DiscussionController::class, 'store_user']);
+Route::controller(DiscussionController::class)->group(function(){
+    Route::get('/discussions', 'index');
+    Route::get('/discussions/create', 'create');
+    Route::post('/discussions', 'store');
+    Route::get('/discussions/{discussion}', 'show');
+    Route::get('/discussions/{discussion}/users', 'list_user');
+    Route::post('/discussions/{discussion}/users', 'store_user');
+    Route::put('/discussions/{discussion}/{user}', 'update_role');
+    Route::delete('/discussions/{discussion}/{user}', 'destroy');
+});
 Route::post('/discussions/{discussion}', 'App\Http\Controllers\MessageController@store')->middleware('auth');
 
 Route::get('/dashboard', function () {

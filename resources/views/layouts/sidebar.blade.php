@@ -1,6 +1,7 @@
 <div class="sidebar">
+    {{-- En-tete de la sidebar --}}
     <div class="logo_content">
-        <a href="/" class="logo">
+        <a href="{{ route('home') }}" class="logo">
             <svg width="25" height="25">
                 <use xlink:href="#scorpion" />
             </svg>
@@ -8,6 +9,7 @@
         </a>
         <i class="bx bx-menu" id="btn"></i>
     </div>
+    {{-- Liste d'outils pour acceder aux contenus --}}
     <ul class="nav_list">
         <li>
             <i class='bx bx-search-alt-2' id="searchBtn"></i>
@@ -22,7 +24,7 @@
             <span class="tooltip">Dashboard</span>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ route('userinfo') }}">
                 <i class='bx bx-user'></i>
                 <span class="link_name">User</span>
             </a>
@@ -57,51 +59,7 @@
             <span class="tooltip">Setting</span>
         </li>
     </ul>
-    <div class="profile_content">
-        <div class="profile">
-            @auth
-                @if (Auth::user()->avatar_path == 'none')
-                    <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png" alt="user_avatar"
-                        id="user_ico">
-                @else
-                    <img src="{{ Auth::user()->avatar_path }}" alt="user_avatar" id="user_ico">
-                @endif
-                <div class="profile_details">
-                    <div class="name">Romero Guillaume</div>
-                    <div class="job">Web Designer</div>
-                </div>
-                <div class="icons logoutbtn">
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                        <i class='bx bx-log-out' id="logout"></i>
-                    </a>
-                </div>
-            @endauth
-            @guest
-                <img src="https://rcmi.fiu.edu/wp-content/uploads/sites/30/2018/02/no_user.png" alt="user_avatar"
-                    id="user_ico">
-                <div class="profile_details">
-                    <div class="name">Please log in</div>
-                    <div class="job"></div>
-                </div>
-                <div class="icons">
-                    <a href="{{ route('register') }}">
-                        <span class="tooltip">Register</span>
-                        <i class='bx bx-door-open' id="register"></i>
-                    </a>
-                    <a href="{{ route('login') }}">
-                        <span class="tooltip">Log in</span>
-                        <i class='bx bx-log-in' id="login"></i>
-                    </a>
-                </div>
-            @endguest
-
-
-        </div>
-    </div>
+    @include('layouts.userbar')
 </div>
 
 <script>

@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" target="_blank">
+                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">
                             <svg class="me-2" width="20" height="20">
                                 <use xlink:href="#pole-emploi" />
                             </svg>
@@ -23,11 +23,33 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/help" target="_blank">
+                        <a href="{{ route('test') }}" target="_blank">
                             <svg class="me-2" width="20" height="20">
                                 <use xlink:href="#scorpion" />
                             </svg>
-                            <span class="item">Aide</span>
+                            <span class="item">Testing room</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://mailtrap.io/inboxes" target="_blank">
+                            <svg class="me-2" width="20" height="20">
+                                <use xlink:href="#mail" />
+                            </svg>
+                            <span class="item">MailTrap</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/mail test" target="_blank">
+                            <svg class="me-2" width="20" height="20">
+                                <use xlink:href="#mail" />
+                            </svg>
+                            <span class="item">Contact me</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://laravel.com/docs/9.x/" target="_blank">
+                            <img src="https://laravel.com/img/logomark.min.svg" alt="laravel_logo" width="20" height="20">
+                            <span class="item">Documentation Laravel</span>
                         </a>
                     </li>
                 </ul>

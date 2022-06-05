@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import 'global.css';
-@import 'navbar.css';
+@import 'sidebar.css';
 @import 'discussion.css';
 @import 'single_chat.css';
 @import 'links.css';

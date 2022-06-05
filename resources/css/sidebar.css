@@ -193,13 +193,76 @@
     width: 100%;
 }
 
+/* Part 1 : Log in & Register */
+.content.sb_active .sidebar .profile_content:hover .profile_actions{
+    display: block;
+    opacity: 1;
+}
+
+.sidebar .profile_content .profile_actions{
+    height: 50px;
+    width: 100%;
+    opacity: 0;
+    display: none;
+    background: #e4e9f7;
+    transition: all 350ms;
+}
+
+
+.sidebar .profile_content .profile_actions .icons{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sidebar .profile_content .profile_actions .logoutBtn{
+    justify-content: center;
+}
+
+.sidebar .profile_content .profile_actions .icons a{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+}
+
+.sidebar .profile_content .profile_actions .logoutBtn a{
+    width: 100%;
+}
+
+.sidebar .profile_content .profile_actions .icons a:hover{
+    color: rgba(0, 200, 0, 0.5);
+}
+.sidebar .profile_content .profile_actions .icons a:focus{
+    color: rgba(0, 200, 0, 0.3);
+}
+.sidebar .profile_content .profile_actions .logoutBtn a:hover{
+    color: rgba(255, 0, 0, 1);
+}
+.sidebar .profile_content .profile_actions .logoutBtn a:focus{
+    color: rgba(255, 0, 0, .5);
+}
+
+.sidebar .profile_content .profile_actions .icons a i{
+    font-size: 35px;
+}
+.sidebar .profile_content .profile_actions .icons a span{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+/* Part 2 user img & infos */
 .sidebar .profile_content .profile {
     position: relative;
     height: 60px;
     transition: all 350ms ease;
     background: none;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
 .content.sb_active .sidebar .profile_content .profile {
@@ -207,6 +270,7 @@
 }
 
 .sidebar .profile_content .profile .profile_details {
+    width: calc(100% - 50px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -235,6 +299,10 @@
     margin: auto 5px 12px 5px;
 }
 
+.profile .profile_details{
+    margin-left: 0;
+}
+
 .profile .profile_details .name{
     font-size: 15px;
     font-weight: 400;
@@ -243,71 +311,4 @@
 .profile .profile_details .job {
     font-size: 12px;
     font-weight: 400;
-}
-
-.sidebar .profile .icons{
-    position: relative;
-    width: 100px;
-    height: 100%;
-    margin-right: 0;
-    display: flex;
-    justify-content: space-between;
-}
-.sidebar .profile .logoutbtn{
-    justify-content: right;
-    margin-right: 10px;
-}
-.sidebar .profile .icons a{
-    width: 50px;
-    height: 50px;
-    margin: 5px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    display: none;
-}
-.content.sb_active .sidebar .profile .icons a {
-    opacity: 1;
-    display: grid;
-}
-
-.sidebar .profile .icons a span{
-    position: absolute;
-    padding: 0 5px;
-    color: #000;
-    background: #fff;
-    white-space: nowrap;
-    border-radius: 6px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    bottom: 45px;
-    opacity: 0;
-    display: block;
-    transition: all 350ms ease;
-    pointer-events: none;
-}
-
-.sidebar .profile .icons a:hover span{
-    bottom: 60px;
-    opacity: 1;
-    display: block;
-    transform: translateY(-50%);
-}
-
-.sidebar .profile .icons a i{
-    font-size: 20px;
-    transition: all 350ms ease;
-}
-
-.sidebar .profile .icons a:hover i{
-    font-size: 50px;
-    color: rgba(0, 255, 0, .8);
-}
-
-.sidebar .profile .icons a #logout{
-    transition: all 350ms ease;
-}
-.sidebar .profile .icons a:hover #logout{
-    font-size: 20px;
-    color: rgba(255, 0, 0, .8);
 }

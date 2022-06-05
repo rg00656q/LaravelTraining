@@ -1,34 +1,16 @@
 @extends('layouts.master')
 @section('content')
+    {{-- Formulaire pour changer ses informations, 2 versions --}}
     <div class="home_content">
+        {{-- Version 1 => pour les infromations simples --}}
         <div class="form">
             <div class="formelt">
                 <div class="title">
-                    Your informations
+                    {{ $message }}
                 </div>
-                <form action="/settings" method="POST" enctype="multipart/form-data">
+                <form action="/user" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="details">
-                        <div class="input-box">
-                            <span>Username</span>
-                            <input type="text" name="name" id="name" placeholder="Enter your username"
-                                value="{{ $user->name }}" required>
-                        </div>
-                        <div class="input-box">
-                            <span>Email</span>
-                            <input type="text" name="email" id="email" placeholder="Enter your email adress"
-                                value="{{ $user->email }}" required>
-                        </div>
-                        <div class="input-box">
-                            <span>Password</span>
-                            <input type="password" name="password" id="password" placeholder="Enter your password" value=""
-                                required>
-                        </div>
-                        <div class="input-box">
-                            <span>Repeat Password</span>
-                            <input type="password" name="password" id="password" placeholder="Repeat your password" value=""
-                                required>
-                        </div>
                         <div class="input-box">
                             <span>First name</span>
                             <input type="text" name="first_name" id="first_name" placeholder="Enter your first name"
@@ -58,6 +40,8 @@
                 </form>
             </div>
         </div>
+
+        {{-- Version 2 => email, mdp et username --}}
     </div>
     <script>
         // Lignes de code pour verifier que l'image est ajoutee et changer la couleur de la bordure
