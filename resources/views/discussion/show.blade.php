@@ -2,6 +2,8 @@
 @section('precision')
     <div class="precision">
         <div class="chat-global">
+
+            {{-- En-tete --}}
             <div class="nav-top">
                 <div class="group">
                     <img src="https://avatars.githubusercontent.com/u/32329634?v=4" />
@@ -18,7 +20,7 @@
                             <i class='bx bx-info-circle'></i>
                             <p> Infos </p>
                         </a>
-                        <a href="/discussions/{{ $discussion->id }}/add">
+                        <a href="/discussions/{{ $discussion->id }}/users">
                             <i class="bx bx-user"></i>
                             <p> Users </p>
                         </a>
@@ -30,7 +32,7 @@
                 </div>
             </div>
 
-            {{-- Coversation --}}
+            {{-- Conversation --}}
             <div class="conversation">
                 @foreach ($discussion->messages->sortBy('created_at') as $message)
                     @if ($message->user->id == Auth::user()->id)

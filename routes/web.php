@@ -33,8 +33,10 @@ Route::controller(DiscussionController::class)->group(function(){
     Route::get('/discussions/create', 'create');
     Route::post('/discussions', 'store');
     Route::get('/discussions/{discussion}', 'show');
-    Route::get('/discussions/{discussion}/add', 'adduser');
-    Route::post('/discussions/{discussion}/add', 'store_user');
+    Route::get('/discussions/{discussion}/users', 'list_user');
+    Route::post('/discussions/{discussion}/users', 'store_user');
+    Route::put('/discussions/{discussion}/{user}', 'update_role');
+    Route::delete('/discussions/{discussion}/{user}', 'destroy');
 });
 Route::post('/discussions/{discussion}', 'App\Http\Controllers\MessageController@store')->middleware('auth');
 

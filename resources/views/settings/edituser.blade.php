@@ -1,6 +1,8 @@
 @extends('layouts.master')
 @section('content')
+    {{-- Formulaire pour changer ses informations, 2 versions --}}
     <div class="home_content">
+        {{-- Version 1 => pour les infromations simples --}}
         <div class="form">
             <div class="formelt">
                 <div class="title">
@@ -38,6 +40,8 @@
                 </form>
             </div>
         </div>
+
+        {{-- Version 2 => email, mdp et username --}}
     </div>
     <script>
         // Lignes de code pour verifier que l'image est ajoutee et changer la couleur de la bordure

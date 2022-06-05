@@ -37,10 +37,9 @@ class DiscussionController extends Controller
         $group = new Discussion;
         $group->group_name = request('group_name');
         $group->description = request('description');
-        $role = 'manager';
 
         if($group->save()){
-            $group->users()->attach($user_id, ['role'=> $role]);
+            $group->users()->attach($user_id, ['role'=> 'manager']);
             $success = true;
         }
         if($success){
@@ -52,8 +51,8 @@ class DiscussionController extends Controller
         }
     }
 
-    public function adduser(Discussion $discussion){
-        return view('discussion.adduser', compact('discussion'));
+    public function list_user(Discussion $discussion){
+        return view('discussion.list_user', compact('discussion'));
     }
 
     public function store_user(Discussion $discussion){
@@ -76,6 +75,23 @@ class DiscussionController extends Controller
         // Ajout de l'utilisateur selon la valeur entree
         $discussion->users()->attach($newuser->id, ['role' => 'user']);
         return back();
+    }
 
+    public function update_role(Discussion $discussion, User $user){
+        if($discussion->users->where('id', $user->id)->first()->pivot->role == 'user'){
+            $discussion->users()->UpdateExistingPivot($user->id, [
+                'role' => 'manager',
+            ]);
+        }else{
+            $discussion->users()->UpdateExistingPivot($user->id, [
+            'role' => 'user',
+        ]);
+        }
+        return back();
+    }
+
+    public function destroy(Discussion $discussion, User $user){
+        $discussion->users()->detach($user->id);
+        return back();
     }
 }

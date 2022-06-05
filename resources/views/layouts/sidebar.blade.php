@@ -1,4 +1,5 @@
 <div class="sidebar">
+    {{-- En-tete de la sidebar --}}
     <div class="logo_content">
         <a href="{{ route('home') }}" class="logo">
             <svg width="25" height="25">
@@ -8,6 +9,7 @@
         </a>
         <i class="bx bx-menu" id="btn"></i>
     </div>
+    {{-- Liste d'outils pour acceder aux contenus --}}
     <ul class="nav_list">
         <li>
             <i class='bx bx-search-alt-2' id="searchBtn"></i>

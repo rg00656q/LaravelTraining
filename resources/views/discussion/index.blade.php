@@ -2,6 +2,8 @@
 @section('content')
     <div class="home_content">
         <div class="discussion_list">
+
+            {{-- En-tete des discussions --}}
             <div class="header">
                 <svg>
                     <use xlink:href="#scorpion" />
@@ -13,6 +15,8 @@
                     </svg>
                 </a>
             </div>
+
+            {{-- Affichage des differents groupes --}}
             @if (count(Auth::user()->discussions))
                 <div class="discussion">
                     @foreach (Auth::user()->discussions->sortByDesc('created_at') as $discussion)
