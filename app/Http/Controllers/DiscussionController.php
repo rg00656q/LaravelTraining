@@ -37,9 +37,10 @@ class DiscussionController extends Controller
         $group = new Discussion;
         $group->group_name = request('group_name');
         $group->description = request('description');
+        $role = 'manager';
 
         if($group->save()){
-            $group->users()->sync($user_id);
+            $group->users()->attach($user_id, ['role'=> $role]);
             $success = true;
         }
         if($success){
@@ -73,7 +74,7 @@ class DiscussionController extends Controller
         }
 
         // Ajout de l'utilisateur selon la valeur entree
-        $discussion->users()->attach($newuser->id);
+        $discussion->users()->attach($newuser->id, ['role' => 'user']);
         return back();
 
     }

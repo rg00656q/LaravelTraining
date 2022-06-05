@@ -18,7 +18,7 @@ class DiscussionFactory extends Factory
     {
         return [
             'group_name' => $this->faker->realText($maxNbChars = 30),
-            'description' => $this->faker->paragraph
+            'description' => $this->faker->paragraph,
         ];
     }
 }

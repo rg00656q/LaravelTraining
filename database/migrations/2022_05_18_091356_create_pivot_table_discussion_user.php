@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('discussion_user', function (Blueprint $table) {
             $table->foreignId('discussion_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('role');
         });
     }
 
