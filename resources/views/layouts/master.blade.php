@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="{{ url('css/app.css') }}">
+    <script src="{{ asset('js/app.js') }}" defer></script>
     @include('layouts.icons')
 </head>
 

@@ -16,6 +16,9 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        $request->validate([
+            'avatar' => 'image',
+        ]);
         $user = Auth::user();
         $user->first_name = request('first_name');
         $user->last_name = request('last_name');
