@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('discussions', function (Blueprint $table) {
-            $table->id();
-            $table->string('group_name');
-            $table->string('description')->nullable();
-            $table->string('group_img_path')->nullable();
-            $table->integer('notifications')->default(0);
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('discussions');
+        Schema::dropIfExists('notifications');
     }
 };

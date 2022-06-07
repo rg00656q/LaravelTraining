@@ -17,9 +17,9 @@
             </div>
 
             {{-- Affichage des differents groupes --}}
-            @if (count(Auth::user()->discussions))
+            @if (count($discussions = Auth::user()->discussions->sortByDesc('updated_at')))
                 <div class="discussion">
-                    @foreach (Auth::user()->discussions->sortByDesc('created_at') as $discussion)
+                    @foreach ($discussions as $discussion)
                         <a href="/discussions/{{ $discussion->id }}" aria-current="true">
                             <!-- aria current important -->
                             <div class="discussion_header">
@@ -36,6 +36,9 @@
                                 @else
                                     No messages... Yet!
                                 @endif
+                            </div>
+                            <div class="notification">
+                                <small>{{ $discussion->notifications }}</small>
                             </div>
                         </a>
                     @endforeach

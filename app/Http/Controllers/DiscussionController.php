@@ -13,14 +13,35 @@ class DiscussionController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
+
     public function index(){
-        $discussions = Discussion::latest()->get();
-        return view('discussion.index', compact('discussions'));
+        $discussions = Auth::user()->discussions;
+        // recuperation des notifications non lues -> ajout a une nouvelle variable sur la discussion
+        $unread_notifs = Auth::user()->unreadNotifications;
+        $notifications = array();
+
+        foreach($discussions as $discussion){
+            $notif_number = 0;
+            foreach($unread_notifs as $unread_notif){
+                if($unread_notif->data['discussion_id'] == $discussion->id){
+                    $notif_number++;
+                }
+            }
+            $discussion->notifications = $notif_number;
+        }
+        return view('discussion.index');
     }
 
     public function show(Discussion $discussion){
-        $discussions = Discussion::latest()->get();
-        return view('discussion.show', compact('discussions', 'discussion'));
+        $unread_notifs = Auth::user()->unreadNotifications;
+        // Remise a zero des notifications lors de la lecture du chat
+        foreach($unread_notifs as $unread_notif){
+            if($unread_notif->data['discussion_id'] == $discussion->id){
+                $unread_notif->markAsRead();
+            }
+        }
+        $discussion->notifications = 0;
+        return view('discussion.show', compact('discussion'));
     }
 
     public function create(){
@@ -55,6 +76,7 @@ class DiscussionController extends Controller
         return view('discussion.list_user', compact('discussion'));
     }
 
+    // Ajout d'un membre a la discussion
     public function store_user(Discussion $discussion){
         // Validation
         $this->validate(request(),[
@@ -77,6 +99,7 @@ class DiscussionController extends Controller
         return back();
     }
 
+    // Change le status d'un membre de la discussion
     public function update_role(Discussion $discussion, User $user){
         if($discussion->users->where('id', $user->id)->first()->pivot->role == 'user'){
             $discussion->users()->UpdateExistingPivot($user->id, [
@@ -90,6 +113,7 @@ class DiscussionController extends Controller
         return back();
     }
 
+    // Retire un membre de la discussion
     public function destroy(Discussion $discussion, User $user){
         $discussion->users()->detach($user->id);
         return back();
