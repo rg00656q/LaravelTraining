@@ -32,7 +32,7 @@
                             </div>
                             <div class="last_message">
                                 @if (count($discussion->messages))
-                                    {{ $discussion->messages->last()->content }}
+                                    {{ $discussion->messages->sortBy('id')->last()->content }}
                                 @else
                                     No messages... Yet!
                                 @endif

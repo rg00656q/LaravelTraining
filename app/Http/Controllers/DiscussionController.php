@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Events\GetNotificationsEvent;
+use App\Events\ReadNotificationsEvent;
 
 class DiscussionController extends Controller
 {
@@ -16,62 +17,40 @@ class DiscussionController extends Controller
 
     public function index(){
         $discussions = Auth::user()->discussions;
-        // recuperation des notifications non lues -> ajout a une nouvelle variable sur la discussion
-        $unread_notifs = Auth::user()->unreadNotifications;
-        $notifications = array();
 
-        foreach($discussions as $discussion){
-            $notif_number = 0;
-            foreach($unread_notifs as $unread_notif){
-                if($unread_notif->data['discussion_id'] == $discussion->id){
-                    $notif_number++;
-                }
-            }
-            $discussion->notifications = $notif_number;
-        }
+        event(new GetNotificationsEvent($discussions));
+
         return view('discussion.index');
     }
 
     public function show(Discussion $discussion){
-        $unread_notifs = Auth::user()->unreadNotifications;
-        // Remise a zero des notifications lors de la lecture du chat
-        foreach($unread_notifs as $unread_notif){
-            if($unread_notif->data['discussion_id'] == $discussion->id){
-                $unread_notif->markAsRead();
-            }
-        }
-        $discussion->notifications = 0;
+
+        event(new ReadNotificationsEvent($discussion));
+
         return view('discussion.show', compact('discussion'));
     }
 
+    // Creation d'un nouveau groupe de discussion
     public function create(){
         return view('discussion.create');
     }
-
     public function store(){
-        $success = false;
-        $user_id = Auth::user()->id;
-        DB::beginTransaction();
         $this->validate(request(),[
             'group_name' => 'required|min:5'
         ]);
+
         $group = new Discussion;
         $group->group_name = request('group_name');
         $group->description = request('description');
 
         if($group->save()){
-            $group->users()->attach($user_id, ['role'=> 'manager']);
-            $success = true;
+            $group->users()->attach(Auth::user()->id, ['role'=> 'manager']);
         }
-        if($success){
-            DB::commit();
-            return view('discussion.index');
-        }else{
-            DB::commit();
-            return view('discussion.index')->withErrorMessage('Echec');
-        }
+
+        return view('discussion.index');
     }
 
+    // Affichage des membres du groupe
     public function list_user(Discussion $discussion){
         return view('discussion.list_user', compact('discussion'));
     }
@@ -107,8 +86,8 @@ class DiscussionController extends Controller
             ]);
         }else{
             $discussion->users()->UpdateExistingPivot($user->id, [
-            'role' => 'user',
-        ]);
+                'role' => 'user',
+            ]);
         }
         return back();
     }

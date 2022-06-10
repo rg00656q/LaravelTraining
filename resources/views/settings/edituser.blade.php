@@ -6,7 +6,7 @@
         <div class="form">
             <div class="formelt">
                 <div class="title">
-                    {{ $message }}
+                    Edit your profile
                 </div>
                 <form action="/user" method="POST" enctype="multipart/form-data" id="user-form-elt">
                     @csrf

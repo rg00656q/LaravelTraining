@@ -43,5 +43,8 @@ Route::post('/discussions/{discussion}', 'App\Http\Controllers\MessageController
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::get('/training', function () {
+    return view('tests.training');
+})->middleware(['auth'])->name('training');
 
 require __DIR__.'/auth.php';

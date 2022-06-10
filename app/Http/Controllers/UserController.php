@@ -23,11 +23,14 @@ class UserController extends Controller
         $user->first_name = request('first_name');
         $user->last_name = request('last_name');
         $user->job = request('job');
-        $path = $request->file('avatar')->store('public/avatars');
-        $user->avatar_path = $path;
+        if($request->avatar != null){
+            $path = $request->file('avatar')->store('public/avatars');
+            $user->avatar_path = $path;
+        }else{
+            $user->avatar_path = null;
+        }
         $user->save();
 
-        $message = 'Edit your profile';
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/user');
     }
 }
