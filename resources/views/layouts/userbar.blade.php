@@ -11,8 +11,7 @@
                     <span class="tooltip">Log out</span>
                 </a>
             </div>
-        @endauth
-        @guest
+        @else
             <div class="icons">
                 <a href="{{ route('register') }}">
                     <i class='bx bx-door-open' id="register"></i>
@@ -23,7 +22,7 @@
                     <i class='bx bx-log-in' id="login"></i>
                 </a>
             </div>
-        @endguest
+        @endauth
     </div>
     <div class="profile">
         @auth

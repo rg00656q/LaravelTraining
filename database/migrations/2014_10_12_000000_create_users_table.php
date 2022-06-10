@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('last_name')->nullable();
             $table->string('job')->nullable();
             $table->string('avatar_path')->nullable();
-            $table->string('role')->default('user');
+            $table->boolean('isadmin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

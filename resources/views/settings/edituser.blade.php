@@ -6,10 +6,11 @@
         <div class="form">
             <div class="formelt">
                 <div class="title">
-                    {{ $message }}
+                    Edit your profile
                 </div>
-                <form action="/user" method="POST" enctype="multipart/form-data">
+                <form action="/user" method="POST" enctype="multipart/form-data" id="user-form-elt">
                     @csrf
+                    {{ method_field('PUT') }}
                     <div class="details">
                         <div class="input-box">
                             <span>First name</span>
@@ -38,12 +39,10 @@
                         <input type="submit" name="submit" value="Edit">
                     </div>
                 </form>
+                @include('layouts.errors')
             </div>
         </div>
 
         {{-- Version 2 => email, mdp et username --}}
     </div>
-    <script>
-        // Lignes de code pour verifier que l'image est ajoutee et changer la couleur de la bordure
-    </script>
 @endsection

@@ -17,7 +17,7 @@ use App\Http\Controllers\DiscussionController;
 
 Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('/user', [UserController::class, 'show'])->middleware('auth')->name('userinfo');
-Route::post('/user', [UserController::class, 'store']);
+Route::put('/user', [UserController::class, 'store']);
 Route::get('/settings', [UserController::class, 'show'])->middleware('auth')->name('settings');
 Route::post('/settings', [UserController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']
@@ -43,5 +43,8 @@ Route::post('/discussions/{discussion}', 'App\Http\Controllers\MessageController
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::get('/training', function () {
+    return view('tests.training');
+})->middleware(['auth'])->name('training');
 
 require __DIR__.'/auth.php';
