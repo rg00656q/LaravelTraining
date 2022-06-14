@@ -23,6 +23,13 @@
                         </a>
                     </li>
                     <li>
+                        <a href="https://www.overleaf.com/project" target="_blank">
+                            <img src="https://www.overleaf.com/touch-icon-192x192.png" alt="overleaf-icon"
+                                style="width: 20px;">
+                            <span class="item">Overleaf</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('test') }}" target="_blank">
                             <svg class="me-2" width="20" height="20">
                                 <use xlink:href="#scorpion" />

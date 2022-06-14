@@ -27,8 +27,6 @@ bootstrap/
 config/
 lang/
 public/
-resources/views/auth/
-resources/views/components/
 routes/api.php
 routes/auth.php
 routes/channels.php

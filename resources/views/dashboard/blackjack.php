@@ -104,7 +104,7 @@
             } else {
                 message = 'You win! congratulations';
                 hasBlackJack = true;
-                player.chips += 20;
+                player.chips += 50;
             }
             messageEl.textContent = message;
         }
