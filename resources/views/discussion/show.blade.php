@@ -2,7 +2,6 @@
 @section('precision')
     <div class="precision">
         <div class="chat-global">
-
             {{-- En-tete --}}
             <div class="nav-top">
                 <div class="group">
@@ -34,7 +33,7 @@
 
             {{-- Conversation --}}
             <div class="conversation">
-                @foreach ($discussion->messages->sortBy('created_at') as $message)
+                @foreach ($messages->sortBy('created_at') as $message)
                     @if ($message->user->id == Auth::user()->id)
                         <div class="bubble user" data-is="You - {{ $message->created_at->diffForHumans() }}">
                             <p> {{ $message->content }} </p>

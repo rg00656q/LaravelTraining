@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Message;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,17 +18,22 @@ class DiscussionController extends Controller
 
     public function index(){
         $discussions = Auth::user()->discussions;
-
         event(new GetNotificationsEvent($discussions));
 
-        return view('discussion.index');
+        //eager loading /  13 queries => 5 queries
+        $discussions = Discussion::with('messages')->whereIn('id', $discussions->pluck('id'))->get();
+
+        return view('discussion.index', compact('discussions'));
     }
 
     public function show(Discussion $discussion){
-
         event(new ReadNotificationsEvent($discussion));
 
-        return view('discussion.show', compact('discussion'));
+        // Eager Loading /  23 queries => 8 queries
+        $discussions = Discussion::with('messages')->whereIn('id', Auth::user()->discussions->pluck('id'))->get()->sortByDesc('updated_at');
+        $messages = Message::with('user')->where('discussion_id', $discussion->id)->get();
+
+        return view('discussion.show', compact('discussions', 'discussion', 'messages'));
     }
 
     // Creation d'un nouveau groupe de discussion

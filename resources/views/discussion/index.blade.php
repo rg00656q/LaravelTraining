@@ -17,7 +17,7 @@
             </div>
 
             {{-- Affichage des differents groupes --}}
-            @if (count($discussions = Auth::user()->discussions->sortByDesc('updated_at')))
+            @if (count($discussions))
                 <div class="discussion">
                     @foreach ($discussions as $discussion)
                         <a href="/discussions/{{ $discussion->id }}" aria-current="true">

@@ -6,7 +6,6 @@ use App\Models\Message;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
 use App\Notifications\NewMessage;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller

@@ -88,6 +88,14 @@
                             <span class="item">Twitch</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="https://coub.com/feed" target="_blank">
+                            <svg class="me-2" width="20" height="20">
+                                <use xlink:href="#coub" />
+                            </svg>
+                            <span class="item">Coub</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
