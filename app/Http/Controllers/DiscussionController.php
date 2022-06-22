@@ -21,7 +21,7 @@ class DiscussionController extends Controller
         event(new GetNotificationsEvent($discussions));
 
         //eager loading /  13 queries => 5 queries
-        $discussions = Discussion::with('messages')->whereIn('id', $discussions->pluck('id'))->get();
+        $discussions = Discussion::with('messages')->whereIn('id', $discussions->pluck('id'))->get()->sortByDesc('updated_at');
 
         return view('discussion.index', compact('discussions'));
     }
