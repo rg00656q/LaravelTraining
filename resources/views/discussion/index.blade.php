@@ -38,7 +38,7 @@
                                 @endif
                             </div>
                             <div class="notification">
-                                <small>{{ $discussion->notifications }}</small>
+                                <small>{{ $discussion->users->where('id', Auth::user()->id)->first()->pivot->notifications }}</small>
                             </div>
                         </a>
                     @endforeach

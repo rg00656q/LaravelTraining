@@ -27,7 +27,10 @@ class DatabaseSeeder extends Seeder
                 $user_id = $user->id;
                 // Role aleatoire + conversion str -> array
                 $role = $roles[array_rand($roles, 1)];
-                $discussion->users()->attach($user_id, ['role' => $role]);
+                $discussion->users()->attach($user_id, [
+                    'role' => $role,
+                    'notifications' => 0
+                ]);
             }
         }
     }

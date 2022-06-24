@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('discussion_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('role');
+            $table->integer('notifications')->default(0);
         });
     }
 

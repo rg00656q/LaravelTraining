@@ -37,7 +37,9 @@ class GetNotificationsListener
                     $notif_number++;
                 }
             }
-            $discussion->notifications = $notif_number;
+            $discussion->users()->UpdateExistingPivot(Auth::user()->id, [
+                'notifications' => $notif_number,
+            ]);
         }
     }
 }

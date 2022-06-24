@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('group_name');
             $table->string('description')->nullable();
             $table->string('group_img_path')->nullable();
-            $table->integer('notifications')->default(0);
             $table->timestamps();
         });
     }

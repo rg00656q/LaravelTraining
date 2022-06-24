@@ -34,6 +34,10 @@ class ReadNotificationsListener
                 $unread_notif->markAsRead();
             }
         }
-        $event->discussion->notifications = 0;
+
+        $discussion->users()->UpdateExistingPivot(Auth::user()->id, [
+            'notifications' => 0,
+        ]);
+
     }
 }

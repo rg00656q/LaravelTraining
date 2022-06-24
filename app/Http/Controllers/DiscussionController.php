@@ -45,15 +45,19 @@ class DiscussionController extends Controller
             'group_name' => 'required|min:5'
         ]);
 
-        $group = new Discussion;
-        $group->group_name = request('group_name');
-        $group->description = request('description');
+        $discussion = new Discussion;
+        $discussion->group_name = request('group_name');
+        $discussion->description = request('description');
 
-        if($group->save()){
-            $group->users()->attach(Auth::user()->id, ['role'=> 'manager']);
+        if($discussion->save()){
+            $discussion->users()->attach(Auth::user()->id, [
+                'role'=> 'manager',
+                'notifications' => 0
+            ]);
         }
 
-        return view('discussion.index');
+        $discussions = Discussion::with('messages')->whereIn('id', Auth::user()->discussions->pluck('id'))->get()->sortByDesc('updated_at');
+        return view('discussion.index', compact('discussions'));
     }
 
     // Affichage des membres du groupe
@@ -80,7 +84,12 @@ class DiscussionController extends Controller
         }
 
         // Ajout de l'utilisateur selon la valeur entree
-        $discussion->users()->attach($newuser->id, ['role' => 'user']);
+        $discussion->users()->attach($newuser->id, [
+            'role' => 'user',
+            'notifications' => 0
+        ]);
+
+        // Renvoi sur la liste de discussions
         return back();
     }
 
